@@ -1,83 +1,410 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Grand Café Latino · Propuestas web</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Jost:wght@300..600&family=Archivo:wdth,wght@62..125,100..900&display=swap">
-<style>
-/* Layout: portada de presentación; dos propuestas lado a lado, cada una con su propio tono. */
-:root { --bg: #0b0a0b; --fg: #f3ede6; --muted: #958b90; --line: rgba(243, 237, 230, .14); --brass: #c9a35f; --neon: #ff3d9a; color-scheme: dark; }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: 400 1rem/1.6 'Jost', system-ui, sans-serif; padding: clamp(28px, 5vw, 64px) clamp(16px, 4vw, 48px); }
-header { max-width: 1200px; margin: 0 auto 40px; display: grid; gap: 12px; }
-.eyebrow { font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin: 0; }
-h1 { margin: 0; font: 500 clamp(2.4rem, 6vw, 4.4rem)/1 'Bodoni Moda', Georgia, serif; text-wrap: balance; }
-h1 em { color: var(--brass); }
-header p { margin: 0; color: var(--muted); max-width: 60ch; }
-.grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-a.card { position: relative; display: grid; align-content: end; gap: 12px; min-height: 520px; padding: 28px; border-radius: 4px; overflow: hidden; text-decoration: none; color: var(--fg); border: 1px solid var(--line); isolation: isolate; }
-a.card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s; }
-a.card::after { content: ""; position: absolute; inset: 0; z-index: -1; }
-a.card:hover img { transform: scale(1.04); }
-.a::after { background: linear-gradient(0deg, #0a1511 15%, rgba(10, 21, 17, .55) 60%, rgba(10, 21, 17, .2)); }
-.b::after { background: linear-gradient(0deg, #080608 15%, rgba(8, 6, 8, .5) 60%, rgba(8, 6, 8, .2)); }
-.c::after { background: linear-gradient(0deg, #08060a 15%, rgba(8, 6, 10, .5) 60%, rgba(158, 31, 106, .25)); }
-.tag { justify-self: start; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; padding: .45em .8em; border-radius: 999px; }
-.a .tag { background: var(--brass); color: #0a1511; }
-.b .tag { background: var(--neon); color: #fff; }
-.c .tag { background: var(--fg); color: #08060a; }
-.a h2 { margin: 0; font: 500 clamp(2.2rem, 4vw, 3.4rem)/1 'Bodoni Moda', Georgia, serif; }
-.a h2 em { color: #e6cf9c; }
-.b h2 { margin: 0; font: 900 clamp(1.8rem, 3.2vw, 2.8rem)/.9 'Archivo', 'Arial Black', sans-serif; font-stretch: 125%; text-transform: uppercase; letter-spacing: -.02em; }
-.c h2 { margin: 0; font: 900 clamp(1.8rem, 3.2vw, 2.8rem)/.9 'Archivo', 'Arial Black', sans-serif; font-stretch: 125%; text-transform: uppercase; letter-spacing: -.03em; }
-.c h2 em { display: block; font: italic 400 .62em/1.1 'Bodoni Moda', Georgia, serif; text-transform: none; letter-spacing: 0; color: var(--brass); }
-.card p { margin: 0; color: rgba(243, 237, 230, .8); max-width: 46ch; }
-.card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
-.card li { font-size: .78rem; border: 1px solid var(--line); border-radius: 999px; padding: .3em .8em; color: rgba(243, 237, 230, .85); }
-.go { font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; margin-top: 6px; }
-.notes { max-width: 1200px; margin: 40px auto 0; border-top: 1px solid var(--line); padding-top: 22px; color: var(--muted); font-size: .88rem; display: grid; gap: 6px; }
-@media (max-width: 1080px) { .grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 820px) { .grid { grid-template-columns: 1fr; } a.card { min-height: 440px; } }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Grand Café Latino · Noches Latino en Lloret de Mar</title>
+  <meta name="description" content="Noches Latino en Lloret de Mar. Salsa, bachata, reggaetón y cócteles de autor. Viernes y sábados de 23:00 a 03:00 en Rambla de Romà Barnés, 10.">
+  <meta name="theme-color" content="#08060A">
+  <meta property="og:title" content="Grand Café Latino · Noches Latino en Lloret de Mar">
+  <meta property="og:description" content="Viernes & Sábados · 23:00 — 03:00 · Rambla de Romà Barnés, 10 · Lloret de Mar">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1545128485-c400e7702796?w=1200&q=75&auto=format&fit=crop">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23E0257F'/%3E%3Ctext x='32' y='45' font-family='Georgia' font-style='italic' font-size='38' fill='%2308060A' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300..700&family=Instrument+Serif:ital@0;1&family=Unbounded:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=2">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NightClub",
+    "name": "Grand Café Latino",
+    "url": "https://grandcafelatino.com",
+    "telephone": "+34 605 26 42 18",
+    "email": "info@grandcafelatino.com",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rambla de Romà Barnés, 10",
+      "addressLocality": "Lloret de Mar",
+      "postalCode": "17310",
+      "addressRegion": "Girona",
+      "addressCountry": "ES"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday"],
+      "opens": "23:00",
+      "closes": "03:00"
+    }],
+    "sameAs": ["https://www.instagram.com/grandcafelatino/"]
+  }
+  </script>
 </head>
 <body>
-<header>
-  <p class="eyebrow">Grand Café Latino · Lloret de Mar</p>
-  <h1>Tres propuestas para la <em>web</em></h1>
-  <p>Todo el contenido sale de grandcafelatino.com: fotos, textos, carta y precios, horario y reseñas de Google que ya publican. Funcionan en móvil y calculan con la hora de Madrid si el local está abierto.</p>
-</header>
-<main class="grid">
-  <a class="card a" href="salon/">
-    <img src="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar.webp" alt="">
-    <span class="tag">Propuesta A</span>
-    <h2>Gran <em>Salón</em></h2>
-    <p>Elegante: verde botella, latón y el neón rosa de la barra. Puerta de entrada con idioma, carta interactiva y reservas.</p>
-    <ul><li>ES · EN · FR</li><li>Carta completa</li><li>Arma tu ronda</li><li>4 planes</li><li>Reserva por email</li><li>Mapa</li></ul>
-    <span class="go">Ver propuesta →</span>
-  </a>
-  <a class="card b" href="noche/">
-    <img src="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-3-copia.webp" alt="">
-    <span class="tag">Propuesta B</span>
-    <h2>Modo Discoteca</h2>
-    <p>Modo discoteca: negro, tipografía gigante y animaciones al hacer scroll. Próximas noches, planes y cócteles.</p>
-    <ul><li>ES · EN</li><li>Próximas noches</li><li>4 planes</li><li>Cócteles</li><li>Reseñas</li></ul>
-    <span class="go">Ver propuesta →</span>
-  </a>
-  <a class="card c" href="club/">
-    <img src="https://images.unsplash.com/photo-1545128485-c400e7702796?w=1000&q=70&auto=format&fit=crop" alt="">
-    <span class="tag">Propuesta C</span>
-    <h2><em>Grand Café</em>Latino Club</h2>
-    <p>Club de alto standing al estilo Sassy: negro, magenta y dorado, bandas cruzadas y texto que se revela al hacer scroll. Horario de Instagram: viernes y sábados de 23:00 a 03:00.</p>
-    <ul><li>Abierto ahora en directo</li><li>Cuenta atrás</li><li>La noche hora a hora</li><li>Reserva VIP por WhatsApp</li><li>Mapa</li></ul>
-    <span class="go">Ver propuesta →</span>
-  </a>
-</main>
-<section class="notes">
-  <span>Fotos enlazadas desde grandcafelatino.com. Para publicar, conviene alojarlas junto a la web en alta resolución.</span>
-  <span>La propuesta C usa fotos provisionales de Unsplash: sustituirlas por fotografía propia del local.</span>
-</section>
+
+  <!-- Intro -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__script">Grand Café</span>
+      <span class="loader__word">LATINO</span>
+      <span class="loader__bar"><i></i></span>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="cursor" aria-hidden="true"><span class="cursor__ring"></span><span class="cursor__dot"></span></div>
+
+  <!-- Header -->
+  <header class="hdr">
+    <a href="#top" class="logo" aria-label="Grand Café Latino — inicio">
+      <span class="logo__script">Grand Café</span>
+      <span class="logo__word">LATINO</span>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="menu-btn__plus" aria-hidden="true"></span>
+      <span class="menu-btn__label">Menú</span>
+    </button>
+    <a href="#reservas" class="pill hdr__cta">
+      <span class="pill__long">Reserva</span>VIP <span class="pill__arrow" aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  <!-- Fullscreen menu -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav aria-label="Principal">
+      <ol class="menu__list">
+        <li style="--i:0"><a href="#club"><span class="menu__n">01</span><span class="menu__t">El Club</span></a></li>
+        <li style="--i:1"><a href="#horario"><span class="menu__n">02</span><span class="menu__t">Horario</span></a></li>
+        <li style="--i:2"><a href="#barra"><span class="menu__n">03</span><span class="menu__t">La Barra</span></a></li>
+        <li style="--i:3"><a href="#vosotros"><span class="menu__n">04</span><span class="menu__t">Vosotros</span></a></li>
+        <li style="--i:4"><a href="#reservas"><span class="menu__n">05</span><span class="menu__t">Reservas <em>VIP</em></span></a></li>
+        <li style="--i:5"><a href="#donde"><span class="menu__n">06</span><span class="menu__t">Dónde</span></a></li>
+      </ol>
+    </nav>
+    <div class="menu__foot">
+      <p><span class="label">Noches Latino</span>Viernes &amp; Sábados<br>23:00 — 03:00</p>
+      <p><span class="label">Dirección</span>Rambla de Romà Barnés, 10<br>Lloret de Mar</p>
+      <p><span class="label">Contacto</span><a href="tel:+34605264218">+34 605 26 42 18</a><br><a href="https://www.instagram.com/grandcafelatino/" target="_blank" rel="noopener">Instagram ↗</a></p>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero__media">
+        <img src="https://images.unsplash.com/photo-1545128485-c400e7702796?w=2000&q=75&auto=format&fit=crop" alt="" fetchpriority="high">
+      </div>
+      <div class="hero__lights" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero__veil" aria-hidden="true"></div>
+
+      <div class="hero__top">
+        <p class="eyebrow">Lloret de Mar <span class="sep">—</span> Costa Brava</p>
+        <p class="status" data-status><span class="status__dot"></span><span data-status-text>Viernes &amp; Sábados · 23:00 — 03:00</span></p>
+      </div>
+
+      <h1 class="hero__title">
+        <span class="sr-only">Grand Café Latino</span>
+        <span class="hero__script" aria-hidden="true">Grand Café</span>
+        <span class="hero__word" data-fit aria-hidden="true"><span>L</span><span>A</span><span>T</span><span>I</span><span>N</span><span>O</span></span>
+      </h1>
+
+      <div class="hero__bottom">
+        <p><em>Noches</em> Latino</p>
+        <p>Viernes &amp; Sábados · 23:00 — 03:00</p>
+        <a href="#club" class="hero__cue">Desliza <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <!-- CROSSED BANDS -->
+    <div class="bands" aria-hidden="true">
+      <div class="band band--b">
+        <div class="band__track" data-marquee>
+          <span class="band__item">Noches Latino <i>✦</i></span>
+          <span class="band__item">Viernes &amp; Sábados <i>✦</i></span>
+          <span class="band__item">23:00 — 03:00 <i>✦</i></span>
+          <span class="band__item">Lloret de Mar <i>✦</i></span>
+        </div>
+      </div>
+      <div class="band band--a">
+        <div class="band__track" data-marquee>
+          <span class="band__item">Salsa <i>✦</i></span>
+          <span class="band__item">Bachata <i>✦</i></span>
+          <span class="band__item">Merengue <i>✦</i></span>
+          <span class="band__item">Reggaetón <i>✦</i></span>
+          <span class="band__item">Comercial <i>✦</i></span>
+          <span class="band__item">Cócteles de autor <i>✦</i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto" id="club">
+      <p class="label" data-reveal>(01) — El Club</p>
+      <p class="manifesto__text" data-words>
+        Cuando Lloret baja la luz, aquí <em>sube</em> la temperatura. Salsa en la piel, un mojito bien frío y una pista que no entiende de <em>relojes.</em>
+      </p>
+    </section>
+
+    <!-- CLUB -->
+    <section class="club">
+      <div class="club__media">
+        <figure class="club__img club__img--a" data-clip data-parallax>
+          <img src="https://images.unsplash.com/photo-1575448913281-98e9e5d3f193?w=1400&q=75&auto=format&fit=crop" alt="Pareja bailando con elegancia en la pista" loading="lazy">
+        </figure>
+        <figure class="club__img club__img--b" data-clip data-parallax>
+          <img src="https://images.unsplash.com/photo-1555489401-79c274997434?w=900&q=75&auto=format&fit=crop" alt="Pareja bailando salsa bajo luz violeta" loading="lazy">
+        </figure>
+        <div class="badge" aria-hidden="true">
+          <svg class="badge__ring" viewBox="0 0 200 200">
+            <defs><path id="badge-circle" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>
+            <text><textPath href="#badge-circle" textLength="470" lengthAdjust="spacing">NOCHES LATINO ✦ LLORET DE MAR ✦ VIE &amp; SÁB ✦</textPath></text>
+          </svg>
+          <span class="badge__c">L</span>
+        </div>
+      </div>
+
+      <div class="club__copy">
+        <p class="label" data-reveal>(02) — Somos Latino</p>
+        <h2 class="h2" data-reveal>Elegancia<br>con <em>sabor.</em></h2>
+        <p class="lead" data-reveal>Grand Café Latino es el punto de encuentro de quienes viven la noche a ritmo latino en Lloret de Mar. En plena Rambla, a un paseo del mar: cócteles bien servidos, un equipo que te trata como en casa y un DJ que sabe exactamente cuándo subir el volumen.</p>
+        <ul class="stats" data-reveal>
+          <li><strong>4,0<span class="star">★</span></strong><span>324 reseñas en Google</span></li>
+          <li><strong>23—03</strong><span>Viernes &amp; Sábados</span></li>
+          <li><strong>DJ</strong><span>Salsa, bachata &amp; comercial</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section class="schedule" id="horario">
+      <div class="sec-head">
+        <div>
+          <p class="label" data-reveal>(03) — Horario</p>
+          <h2 class="h2" data-reveal>Dos noches,<br><em>cero</em> excusas.</h2>
+        </div>
+        <div class="countdown" data-reveal aria-live="polite">
+          <p class="countdown__label" data-cd-label>La próxima noche empieza en</p>
+          <div class="countdown__grid">
+            <div><span data-cd="d">00</span><small>días</small></div>
+            <div><span data-cd="h">00</span><small>horas</small></div>
+            <div><span data-cd="m">00</span><small>min</small></div>
+            <div><span data-cd="s">00</span><small>seg</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nights">
+        <article class="night" data-day="5">
+          <h3 class="night__day">Viernes <span class="night__badge" data-badge hidden></span></h3>
+          <span class="night__line" aria-hidden="true"><span>Noches Latino</span></span>
+          <p class="night__time">23:00 <span aria-hidden="true">→</span><span class="sr-only">a</span> 03:00</p>
+        </article>
+        <article class="night" data-day="6">
+          <h3 class="night__day">Sábado <span class="night__badge" data-badge hidden></span></h3>
+          <span class="night__line" aria-hidden="true"><span>Noches Latino</span></span>
+          <p class="night__time">23:00 <span aria-hidden="true">→</span><span class="sr-only">a</span> 03:00</p>
+        </article>
+      </div>
+
+      <p class="label timeline__label" data-reveal>La noche, hora a hora</p>
+      <ol class="timeline">
+        <li data-reveal><time>23:00</time><h4>Se abren las puertas</h4><p>Primeras copas, cócteles y salsa para entrar en calor.</p></li>
+        <li data-reveal><time>00:00</time><h4>Pista encendida</h4><p>Bachata y merengue: la pista empieza a llenarse.</p></li>
+        <li data-reveal><time>01:00</time><h4>El DJ sube el ritmo</h4><p>Reggaetón y comercial hasta que el cuerpo aguante.</p></li>
+        <li data-reveal><time>03:00</time><h4>Última canción</h4><p>…y la promesa de volver el sábado.</p></li>
+      </ol>
+    </section>
+
+    <!-- BAR -->
+    <section class="bar" id="barra">
+      <div class="sec-head">
+        <div>
+          <p class="label" data-reveal>(04) — La Barra</p>
+          <h2 class="h2" data-reveal>Cócteles<br>que <em>bailan.</em></h2>
+        </div>
+        <p class="lead" data-reveal>Tropicales, de autor y siempre bien servidos. Ingredientes de primera y esa atención al detalle que hace que quieras pedir otra.</p>
+      </div>
+
+      <div class="drinks">
+        <article class="drink" data-reveal>
+          <figure><img src="https://images.unsplash.com/photo-1632995561645-86a7777d3e7a?w=900&q=75&auto=format&fit=crop" alt="Mojito con hierbabuena y lima" loading="lazy"></figure>
+          <div class="drink__meta"><span class="drink__n">01</span><h3>Mojitos</h3><p>El clásico de la casa: hierbabuena, lima y ron. Frío, como tiene que ser.</p></div>
+        </article>
+        <article class="drink" data-reveal>
+          <figure><img src="https://images.unsplash.com/photo-1772311698901-fe3fa07141be?w=900&q=75&auto=format&fit=crop" alt="Tres cócteles de autor sobre la barra" loading="lazy"></figure>
+          <div class="drink__meta"><span class="drink__n">02</span><h3>Cócteles de autor</h3><p>Tropicales y de firma propia, preparados al momento.</p></div>
+        </article>
+        <article class="drink" data-reveal>
+          <figure><img src="https://images.unsplash.com/photo-1770164491578-09f08156db2d?w=900&q=75&auto=format&fit=crop" alt="Camarero sirviendo una copa con hielo" loading="lazy"></figure>
+          <div class="drink__meta"><span class="drink__n">03</span><h3>Copas &amp; cervezas</h3><p>Destilados seleccionados y cervezas nacionales e internacionales.</p></div>
+        </article>
+        <article class="drink drink--text" data-reveal>
+          <span class="drink__n">04</span>
+          <div>
+            <h3>Tequeños</h3>
+            <p>Recién salidos de la freidora: crujientes por fuera, calientes por dentro.</p>
+          </div>
+          <ul class="drink__list">
+            <li>Queso &amp; salsa tártara</li>
+            <li>Nutella</li>
+            <li>Guayaba &amp; queso</li>
+          </ul>
+          <p class="drink__foot">Cocina abierta hasta el cierre</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CROWD -->
+    <section class="crowd" id="vosotros">
+      <div class="sec-head sec-head--center">
+        <p class="label" data-reveal>(05) — Vosotros</p>
+        <h2 class="h2 h2--xl" data-reveal>La noche la<br class="br-d"> hacéis <em>vosotros.</em></h2>
+      </div>
+
+      <div class="reel">
+        <div class="reel__track" data-marquee>
+          <figure><img src="https://images.unsplash.com/photo-1572029848405-42f2a2bc3ccd?w=700&q=70&auto=format&fit=crop" alt="Pareja bailando en la penumbra" loading="lazy"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1713450605268-5f8ba67f5b55?w=700&q=70&auto=format&fit=crop" alt="Grupo bailando en la fiesta" loading="lazy"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1776018396028-d40694777383?w=700&q=70&auto=format&fit=crop" alt="Cóctel oscuro con cereza en la barra" loading="lazy"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1635164057838-71f5757a4493?w=700&q=70&auto=format&fit=crop" alt="Pareja bailando junto a la barra" loading="lazy"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1496337589254-7e19d01cec44?w=700&q=70&auto=format&fit=crop" alt="DJ en cabina con luces violetas" loading="lazy"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1754684223558-2cd0e4b518ed?w=700&q=70&auto=format&fit=crop" alt="Ambiente de fiesta en la pista" loading="lazy"></figure>
+        </div>
+      </div>
+
+      <div class="reviews">
+        <div class="score" data-reveal>
+          <span class="score__num">4,0</span>
+          <div>
+            <span class="score__stars" aria-label="4 de 5 estrellas">★★★★<span>★</span></span>
+            <p>324 reseñas en Google</p>
+          </div>
+        </div>
+        <blockquote class="quote" data-reveal>
+          <p>«Trato inigualable, los mejores camareros.»</p>
+          <cite>— Reseña en Google</cite>
+        </blockquote>
+        <div class="tags" data-reveal>
+          <p class="label">Lo más mencionado</p>
+          <ul><li>Cócteles</li><li>Salsa</li><li>Mojito</li><li>Copas</li></ul>
+          <a class="pill pill--ghost" href="https://www.instagram.com/grandcafelatino/" target="_blank" rel="noopener">@grandcafelatino <span class="pill__arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIP / RESERVATIONS -->
+    <section class="vip" id="reservas">
+      <div class="vip__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1560253740-f0e82b766d72?w=1800&q=70&auto=format&fit=crop" alt="" loading="lazy">
+      </div>
+      <div class="vip__inner">
+        <div class="vip__copy">
+          <p class="label" data-reveal>(06) — Reservas &amp; VIP</p>
+          <h2 class="h2 h2--xl" data-reveal>Tu mesa<br>te <em>espera.</em></h2>
+          <p class="lead" data-reveal>Cumpleaños, despedidas, eventos privados o simplemente una noche que merece mesa propia. Cuéntanos qué tienes en mente y lo dejamos todo listo.</p>
+          <ul class="vip__list" data-reveal>
+            <li>Mesas reservadas para grupos</li>
+            <li>Cumpleaños &amp; despedidas</li>
+            <li>Eventos privados</li>
+          </ul>
+          <p class="vip__alt" data-reveal>¿Prefieres llamar? <a href="tel:+34605264218">+34 605 26 42 18</a></p>
+        </div>
+
+        <form class="form" novalidate data-reveal>
+          <div class="field">
+            <label for="f-name">Nombre</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Tu nombre" required>
+            <span class="field__err" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="f-night">Noche</label>
+            <select id="f-night" name="night"></select>
+          </div>
+          <div class="field">
+            <span class="field__label" id="people-label">Personas</span>
+            <div class="stepper" role="group" aria-labelledby="people-label">
+              <button type="button" data-step="-1" aria-label="Una persona menos">−</button>
+              <output id="f-people" name="people" aria-live="polite">4</output>
+              <button type="button" data-step="1" aria-label="Una persona más">+</button>
+            </div>
+          </div>
+          <fieldset class="field">
+            <legend class="field__label">Motivo</legend>
+            <div class="chips">
+              <label><input type="radio" name="type" value="Mesa VIP" checked><span>Mesa VIP</span></label>
+              <label><input type="radio" name="type" value="Cumpleaños"><span>Cumpleaños</span></label>
+              <label><input type="radio" name="type" value="Despedida"><span>Despedida</span></label>
+              <label><input type="radio" name="type" value="Evento privado"><span>Evento privado</span></label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="f-msg">Comentarios <span class="opt">(opcional)</span></label>
+            <textarea id="f-msg" name="msg" rows="2" placeholder="Hora de llegada, botellas, sorpresa…"></textarea>
+          </div>
+          <button class="btn" type="submit">Reservar por WhatsApp <span aria-hidden="true">↗</span></button>
+          <p class="form__note" data-form-note>Se abrirá WhatsApp con tu solicitud. Te confirmamos disponibilidad por mensaje.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="where" id="donde">
+      <div class="where__info">
+        <p class="label" data-reveal>(07) — Dónde</p>
+        <h2 class="h2 h2--sm" data-reveal>Rambla de Romà<br>Barnés, <em>10</em></h2>
+        <p class="lead" data-reveal>17310 Lloret de Mar, Girona. En el corazón de Lloret, a un paseo de la playa.</p>
+        <dl class="facts" data-reveal>
+          <div><dt>Noches Latino</dt><dd>Viernes &amp; Sábados<br>23:00 — 03:00</dd></div>
+          <div><dt>Acceso</dt><dd>+18 · Reservado el<br>derecho de admisión</dd></div>
+          <div><dt>Teléfono</dt><dd><a href="tel:+34605264218">+34 605 26 42 18</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:info@grandcafelatino.com">info@grandcafelatino.com</a></dd></div>
+        </dl>
+        <a class="pill" data-reveal href="https://www.google.com/maps/dir/?api=1&amp;destination=Grand+Caf%C3%A8+Latino%2C+Rambla+de+Rom%C3%A0+Barn%C3%A9s+10%2C+17310+Lloret+de+Mar" target="_blank" rel="noopener">Cómo llegar <span class="pill__arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <div class="where__map" data-clip>
+        <a class="where__fallback" href="https://www.google.com/maps/search/?api=1&amp;query=Grand+Caf%C3%A8+Latino+Lloret+de+Mar" target="_blank" rel="noopener">
+          <span class="where__pin" aria-hidden="true"></span>
+          <span>Ver en Google Maps ↗</span>
+        </a>
+        <iframe title="Mapa: Grand Café Latino, Rambla de Romà Barnés 10, Lloret de Mar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Grand+Caf%C3%A8+Latino,+Rambla+de+Rom%C3%A0+Barn%C3%A9s+10,+17310+Lloret+de+Mar&amp;z=16&amp;output=embed"></iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="ftr">
+    <div class="ftr__cta">
+      <p class="label" data-reveal>¿Nos vemos el viernes?</p>
+      <a href="#reservas" class="ftr__big" data-reveal>Reserva <em>tu noche</em> <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <div class="ftr__cols">
+      <div><p class="label">Horario</p><p>Noches Latino<br>Viernes &amp; Sábados<br>23:00 — 03:00</p></div>
+      <div><p class="label">Dirección</p><p>Rambla de Romà Barnés, 10<br>17310 Lloret de Mar<br>Girona</p></div>
+      <div><p class="label">Contacto</p><p><a href="tel:+34605264218">+34 605 26 42 18</a><br><a href="mailto:info@grandcafelatino.com">info@grandcafelatino.com</a></p></div>
+      <div><p class="label">Síguenos</p><p><a href="https://www.instagram.com/grandcafelatino/" target="_blank" rel="noopener">Instagram ↗</a></p></div>
+    </div>
+
+    <p class="ftr__word" data-fit aria-hidden="true"><span>L</span><span>A</span><span>T</span><span>I</span><span>N</span><span>O</span></p>
+
+    <div class="ftr__legal">
+      <span>© 2026 Grand Café Latino</span>
+      <nav aria-label="Legal"><a href="#">Aviso legal</a><a href="#">Política de cookies</a><a href="#">Privacidad</a></nav>
+    </div>
+  </footer>
+
+  <!-- Imágenes provisionales: Unsplash (licencia libre). Sustituir por fotografía propia del local. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="main.js?v=2" defer></script>
 </body>
 </html>
