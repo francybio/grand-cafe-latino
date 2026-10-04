@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grand Café Latino · Discoteca en Lloret de Mar</title>
+<meta name="description" content="Grand Café Latino, discoteca y bar musical en Lloret de Mar: música latina, reguetón, electrónica y cócteles a 9,50 €. Todos los días de 20:00 a 3:00.">
+<meta name="theme-color" content="#080608">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Bodoni+Moda:ital,opsz,wght@1,6..96,400..700&display=swap">
+<style>
+/* Layout: club a pantalla completa. Tipografía extendida gigante que ocupa el ancho, fotos que se abren con el scroll; el rosa del neón y el ámbar de la barra son la única luz sobre negro. */
+:root {
+  --black: #080608;
+  --night: #120d12;
+  --white: #f6f0ec;
+  --grey: #8f858c;
+  --neon: #ff3d9a;
+  --amber: #ffa94d;
+  --line: rgba(246, 240, 236, .14);
+
+  --f-wide: 'Archivo', 'Arial Black', 'Helvetica Neue', system-ui, sans-serif;
+  --f-serif: 'Bodoni Moda', 'Bodoni 72', Didot, Georgia, serif;
+
+  --gutter: clamp(16px, 3.4vw, 48px);
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: var(--black); color: var(--white); font: 400 1.0625rem/1.6 var(--f-wide); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--neon); outline-offset: 3px; }
+[hidden] { display: none !important; }
+.pad { padding-inline: var(--gutter); }
+.wide { font-family: var(--f-wide); font-stretch: 125%; font-weight: 900; text-transform: uppercase; letter-spacing: -.02em; line-height: .86; }
+.serif { font-family: var(--f-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+.label { font-size: .72rem; font-weight: 600; font-stretch: 110%; letter-spacing: .18em; text-transform: uppercase; }
+.glow { color: var(--neon); text-shadow: 0 0 18px rgba(255, 61, 154, .55); }
+
+/* ---------- preloader ---------- */
+.loader { position: fixed; inset: 0; z-index: 200; background: var(--black); display: grid; place-items: center; transition: transform .9s cubic-bezier(.7, 0, .2, 1) .1s; }
+.loader__word { overflow: hidden; font-size: clamp(2rem, 9vw, 6rem); }
+.loader__word span { display: inline-block; transform: translateY(105%); animation: up .7s cubic-bezier(.2, .8, .2, 1) forwards; }
+.loader__bar { position: absolute; left: 50%; bottom: 18%; width: 120px; height: 1px; background: var(--line); transform: translateX(-50%); overflow: hidden; }
+.loader__bar::after { content: ""; position: absolute; inset: 0; background: var(--neon); transform-origin: left; animation: load 1.1s ease forwards; transform: scaleX(0); }
+@keyframes up { to { transform: none; } }
+@keyframes load { to { transform: scaleX(1); } }
+body.ready .loader { transform: translateY(-100%); }
+
+/* ---------- header ---------- */
+.header { position: fixed; top: 0; inset-inline: 0; z-index: 50; padding-top: env(safe-area-inset-top, 0px); }
+.header__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 84px; }
+.brand { text-decoration: none; display: grid; line-height: .9; width: max-content; }
+.brand b { font-size: 1.35rem; }
+.brand small { font-size: .62rem; font-weight: 700; font-stretch: 125%; letter-spacing: .32em; }
+.menu-btn { background: none; border: 0; cursor: pointer; display: grid; justify-items: center; gap: 4px; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; padding: 6px 10px; }
+.menu-btn i { position: relative; width: 22px; height: 22px; }
+.menu-btn i::before, .menu-btn i::after { content: ""; position: absolute; background: var(--white); left: 50%; top: 50%; transform: translate(-50%, -50%); transition: transform .4s; }
+.menu-btn i::before { width: 22px; height: 1.5px; }
+.menu-btn i::after { width: 1.5px; height: 22px; }
+.menu-open .menu-btn i::before, .menu-open .menu-btn i::after { transform: translate(-50%, -50%) rotate(45deg); }
+.header__right { justify-self: end; display: flex; align-items: center; gap: 12px; }
+.pill { display: inline-flex; align-items: center; gap: .6em; height: 42px; padding: 0 1.2em; border-radius: 999px; background: var(--white); color: var(--black); text-decoration: none; font-size: .72rem; font-weight: 700; font-stretch: 110%; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; border: 0; cursor: pointer; transition: background .25s, color .25s; }
+.pill:hover { background: var(--neon); color: var(--white); }
+.pill--neon { background: var(--neon); color: var(--white); }
+.pill--neon:hover { background: var(--white); color: var(--black); }
+.pill--line { background: transparent; color: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
+.pill--line:hover { background: var(--white); color: var(--black); }
+.pill svg { width: 14px; height: 14px; }
+.lang { display: inline-flex; gap: 2px; font-size: .7rem; font-weight: 600; letter-spacing: .14em; }
+.lang button { background: none; border: 0; cursor: pointer; padding: 6px 6px; color: var(--grey); }
+.lang button[aria-pressed="true"] { color: var(--white); text-decoration: underline; text-decoration-color: var(--neon); text-underline-offset: 5px; text-decoration-thickness: 2px; }
+.header { mix-blend-mode: normal; transition: background .4s; }
+.header.is-solid { background: linear-gradient(rgba(8, 6, 8, .94) 55%, rgba(8, 6, 8, 0)); }
+@media (max-width: 640px) {
+  .header__bar { grid-template-columns: 1fr auto auto; gap: 10px; height: 70px; }
+  .menu-btn { order: 3; }
+  .header__right { order: 2; }
+  .header__right .lang, .header__right .pill span { display: none; }
+  .header__right .pill { width: 42px; padding: 0; justify-content: center; }
+}
+
+/* ---------- full menu ---------- */
+.overlay { position: fixed; inset: 0; z-index: 45; background: var(--black); display: grid; align-content: center; padding: 110px var(--gutter) 40px; clip-path: circle(0% at 50% 42px); transition: clip-path .7s cubic-bezier(.7, 0, .2, 1); visibility: hidden; }
+.menu-open .overlay { clip-path: circle(150% at 50% 42px); visibility: visible; }
+.overlay nav { display: grid; }
+.overlay nav a { text-decoration: none; font-size: clamp(2.4rem, 8.4vw, 7rem); padding-block: .04em; display: flex; align-items: baseline; gap: .3em; transition: color .25s; width: max-content; max-width: 100%; }
+.overlay nav a em { font-family: var(--f-serif); font-style: italic; font-weight: 400; text-transform: none; font-stretch: 100%; font-size: .38em; color: var(--grey); letter-spacing: 0; }
+.overlay nav a:hover { color: var(--neon); }
+.overlay__foot { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 40px; color: var(--grey); font-size: .85rem; align-items: center; }
+
+/* ---------- hero ---------- */
+.hero { min-height: 100svh; display: grid; grid-template-rows: 1fr auto auto; padding-top: 110px; padding-bottom: 28px; position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; width: 80vmax; height: 80vmax; left: 50%; top: 58%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255, 61, 154, .22), rgba(255, 169, 77, .06) 40%, transparent 65%); filter: blur(10px); animation: breathe 7s ease-in-out infinite alternate; pointer-events: none; }
+@keyframes breathe { from { opacity: .55; transform: translate(-50%, -50%) scale(.92); } to { opacity: 1; transform: translate(-50%, -50%) scale(1.05); } }
+.hero__top { align-self: end; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; position: relative; color: var(--grey); }
+.hero__word { position: relative; justify-self: center; width: max-content; max-width: none; margin: 6px 0 0; white-space: nowrap; font-size: 22vw; line-height: .8; color: var(--white); background: url("https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-3-copia.webp") 50% 50% / 120% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: pan 18s ease-in-out infinite alternate; text-align: center; }
+@keyframes pan { from { background-position: 30% 40%; } to { background-position: 70% 60%; } }
+.hero__word::after { content: attr(data-text); position: absolute; inset: 0; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1px rgba(246, 240, 236, .35); pointer-events: none; }
+.hero__sub { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; margin-top: 28px; }
+.hero__claim { font-size: clamp(2rem, 5.2vw, 4.6rem); line-height: 1; margin: 0; text-wrap: balance; }
+.hero__facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; justify-items: end; text-align: right; font-size: .9rem; }
+.status { display: inline-flex; align-items: center; gap: .6em; }
+.status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
+.status.is-open .dot { background: #4dff9a; box-shadow: 0 0 12px #4dff9a; }
+.scroll-cue { position: relative; margin-top: 30px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); padding-top: 16px; color: var(--grey); }
+.scroll-cue span:last-child { animation: bob 1.6s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(4px); } }
+@media (max-width: 760px) { .hero__sub { grid-template-columns: 1fr; } .hero__facts { justify-items: start; text-align: left; } }
+
+/* ---------- expanding photo ---------- */
+.expand { height: 240vh; position: relative; --p: 1; }
+.expand__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.expand__media { position: absolute; inset: 0; clip-path: inset(calc((1 - var(--p)) * 26%) calc((1 - var(--p)) * 32%) round calc((1 - var(--p)) * 28px)); }
+.expand__media img { width: 100%; height: 100%; object-fit: cover; transform: scale(calc(1.25 - var(--p) * .25)); }
+.expand__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8, 6, 8, .85), rgba(8, 6, 8, .1) 55%); opacity: var(--p); }
+.expand__text { position: absolute; left: var(--gutter); right: var(--gutter); bottom: 8vh; display: grid; gap: 10px; opacity: calc(var(--p) * 1.6 - .6); transform: translateY(calc((1 - var(--p)) * 40px)); }
+.expand__text p { margin: 0; }
+.expand__text .wide { font-size: clamp(2.2rem, 7.4vw, 7rem); }
+.expand__text .serif { font-size: clamp(1.4rem, 2.6vw, 2.2rem); color: var(--white); }
+
+/* ---------- manifesto ---------- */
+.manifesto { padding-block: clamp(100px, 16vw, 200px); }
+.manifesto .label { color: var(--neon); margin-bottom: 30px; display: block; }
+.manifesto p { margin: 0; font-size: clamp(1.9rem, 4.6vw, 4.2rem); line-height: 1.08; font-weight: 800; font-stretch: 112%; letter-spacing: -.02em; max-width: 22ch; text-wrap: balance; }
+.manifesto p .w { transition: color .3s; }
+.js .manifesto p .w { color: rgba(246, 240, 236, .16); }
+.js .manifesto p .w.on { color: var(--white); }
+.js .manifesto p .w.on.hot { color: var(--neon); }
+
+/* ---------- genres ---------- */
+.genres { border-top: 1px solid var(--line); position: relative; }
+.genre { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: center; padding-block: clamp(14px, 2vw, 26px); border-bottom: 1px solid var(--line); cursor: default; position: relative; }
+.genre h3 { margin: 0; font-size: clamp(1.9rem, 9.4vw, 9.4rem); transition: color .3s, transform .5s cubic-bezier(.2, .8, .2, 1); }
+.genre p { margin: 0; text-align: right; color: var(--grey); font-size: .9rem; max-width: 22ch; transition: color .3s; }
+.genre:hover h3 { color: var(--neon); transform: translateX(1.5vw); }
+.genre:hover p { color: var(--white); }
+.genre h3 .serif { font-stretch: 100%; text-transform: none; font-weight: 400; letter-spacing: -.02em; }
+.float-img { position: fixed; left: 0; top: 0; width: 260px; aspect-ratio: 3 / 4; z-index: 30; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(.85) rotate(-4deg); transition: opacity .3s, transform .35s; border-radius: 6px; overflow: hidden; }
+.float-img.on { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(-4deg); }
+.float-img img { width: 100%; height: 100%; object-fit: cover; }
+@media (hover: none) { .float-img { display: none; } }
+@media (max-width: 640px) { .genre { grid-template-columns: 1fr; gap: 4px; } .genre p { text-align: left; } }
+
+/* ---------- section heads ---------- */
+.section { padding-block: clamp(90px, 12vw, 160px); }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 40px; margin-bottom: clamp(36px, 5vw, 64px); }
+.head h2 { margin: 0; font-size: clamp(2.8rem, 9vw, 8.4rem); }
+.head h2 .serif { text-transform: none; font-stretch: 100%; font-weight: 400; color: var(--neon); }
+.head p { margin: 0; color: var(--grey); max-width: 34ch; }
+
+/* ---------- nights ---------- */
+.nights { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.night { container-type: inline-size; position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: 18px; min-height: 380px; padding: 22px; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; isolation: isolate; transition: border-color .3s; }
+.night::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--img) center / cover; opacity: .0; transform: scale(1.08); transition: opacity .5s, transform .8s; }
+.night::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8, 6, 8, .3), rgba(8, 6, 8, .9)); opacity: 0; transition: opacity .5s; }
+.night:hover { border-color: var(--neon); }
+.night:hover::before { opacity: .65; transform: none; }
+.night:hover::after { opacity: 1; }
+.night__top { display: flex; justify-content: space-between; align-items: center; color: var(--grey); }
+.night__tag { color: var(--black); background: var(--neon); border-radius: 999px; padding: .35em .8em; }
+.night__date { align-self: end; }
+.night__date b { display: block; font-size: min(26cqi, 6.4rem); line-height: .85; }
+.night__date span { display: block; margin-top: 10px; font-size: 1.05rem; }
+.night__date small { color: var(--grey); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.night .pill { justify-self: start; }
+.night:first-child { background: linear-gradient(160deg, rgba(255, 61, 154, .2), rgba(255, 169, 77, .05) 60%, transparent); border-color: rgba(255, 61, 154, .5); }
+@media (max-width: 1000px) { .nights { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .nights { grid-template-columns: 1fr; } .night { min-height: 260px; } }
+
+/* ---------- planes ---------- */
+.panels { display: flex; gap: 12px; height: clamp(560px, 78vh, 700px); }
+.panel { position: relative; flex: 1; min-width: 0; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(18px, 2.2vw, 30px); transition: flex .7s cubic-bezier(.2, .8, .2, 1); isolation: isolate; outline: none; }
+.panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1s; }
+.panel::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(8, 6, 8, .96) 25%, rgba(8, 6, 8, .35) 70%, rgba(8, 6, 8, .45)); }
+.panel h3 { margin: 0; font-size: clamp(1.3rem, 2.1vw, 2.6rem); white-space: nowrap; }
+.panel .label { color: var(--neon); margin-bottom: 8px; }
+.panel .more { display: grid; gap: 14px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .6s, opacity .4s, margin .6s; }
+.panels:not(:hover):not(:focus-within) .panel.is-default, .panel:hover, .panel:focus-within { flex: 2.4; }
+.panels:not(:hover):not(:focus-within) .panel.is-default .more, .panel:hover .more, .panel:focus-within .more { max-height: 420px; opacity: 1; margin-top: 14px; }
+.panel:hover img { transform: scale(1.05); }
+.panel .quote { margin: 0; font-family: var(--f-serif); font-style: italic; font-size: 1.15rem; line-height: 1.3; color: rgba(246, 240, 236, .9); max-width: 32ch; }
+.order { display: grid; gap: 6px; font-size: .88rem; max-width: 380px; }
+.order .label { color: var(--grey); margin: 0; }
+.order ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.order li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; font-variant-numeric: tabular-nums; }
+.order li b { color: var(--neon); }
+.order li span:last-child { color: var(--grey); }
+.order .total { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 2px; }
+.order .total strong { font-size: 1.5rem; font-weight: 800; font-stretch: 112%; font-variant-numeric: tabular-nums; }
+.panel .pill { justify-self: start; }
+.panel .event-p { margin: 0; color: rgba(246, 240, 236, .82); max-width: 34ch; }
+.panels-note { margin-top: 16px; color: var(--grey); font-size: .82rem; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 18px; color: var(--grey); font-size: .95rem; align-items: center; }
+.contact-row b { color: var(--white); font-weight: 600; font-variant-numeric: tabular-nums; user-select: all; }
+@media (max-width: 960px) {
+  .panels { flex-direction: column; height: auto; }
+  .panel { min-height: 420px; flex: none !important; }
+  .panel .more { max-height: none !important; opacity: 1 !important; margin-top: 14px; }
+}
+
+/* ---------- reviews ---------- */
+.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.review { border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: grid; gap: 18px; align-content: space-between; }
+.review p { margin: 0; font-family: var(--f-serif); font-style: italic; font-size: clamp(1.25rem, 1.8vw, 1.6rem); line-height: 1.25; }
+.review footer { color: var(--grey); font-size: .85rem; }
+.review footer b { color: var(--white); font-weight: 600; }
+@media (max-width: 900px) { .reviews { grid-template-columns: 1fr; } }
+
+/* ---------- cocktails ---------- */
+.strip { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: var(--gutter); padding-bottom: 18px; cursor: grab; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.strip.dragging { cursor: grabbing; scroll-snap-type: none; }
+.drink { flex: 0 0 clamp(250px, 26vw, 360px); scroll-snap-align: start; aspect-ratio: 3 / 4.4; border-radius: 18px; overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 22px; isolation: isolate; user-select: none; }
+.drink img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; pointer-events: none; }
+.drink::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(8, 6, 8, .85), transparent 50%); }
+.drink--type { background: radial-gradient(120% 90% at 30% 20%, var(--c1), var(--c2) 60%, var(--black)); }
+.drink--type::after { display: none; }
+.drink__price { align-self: flex-end; background: var(--white); color: var(--black); border-radius: 999px; padding: .4em .8em; font-weight: 700; font-size: .85rem; font-variant-numeric: tabular-nums; }
+.drink h3 { margin: 0; font-size: clamp(1.7rem, 2.6vw, 2.3rem); line-height: .9; }
+.drink p { margin: 8px 0 0; font-size: .9rem; color: rgba(246, 240, 236, .82); }
+.drink--type .big { font-family: var(--f-serif); font-style: italic; font-size: 7rem; line-height: .8; color: rgba(255, 255, 255, .92); margin-top: 20px; }
+.extras { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.extras span { border: 1px solid var(--line); border-radius: 999px; padding: .55em 1em; font-size: .85rem; color: var(--grey); }
+.extras b { color: var(--white); font-weight: 600; }
+.strip-nav { display: flex; gap: 8px; }
+.strip-nav button { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 1.1rem; }
+.strip-nav button:hover { background: var(--white); color: var(--black); }
+
+/* ---------- info ---------- */
+.info { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.info > div { padding: 32px 28px 32px 0; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.info > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+.info .label { color: var(--neon); }
+.week { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.week li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); color: var(--grey); text-transform: capitalize; }
+.week li.open { color: var(--white); }
+.week li.today { color: var(--neon); font-weight: 600; }
+.week-note { font-size: .85rem; color: var(--grey); }
+.addr { font-size: 1.3rem; font-weight: 800; font-stretch: 112%; line-height: 1.1; margin: 0; }
+.info p { margin: 0; color: var(--grey); }
+.socials { display: grid; gap: 8px; }
+.socials a { display: flex; justify-content: space-between; align-items: center; text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--line); font-weight: 600; transition: color .2s, padding .3s; }
+.socials a:hover { color: var(--neon); padding-left: 8px; }
+@media (max-width: 900px) { .info { grid-template-columns: 1fr; } .info > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); } }
+
+/* ---------- footer ---------- */
+.footer { border-top: 1px solid var(--line); padding-top: 40px; overflow: hidden; }
+.ticker { display: flex; width: max-content; animation: tick 30s linear infinite; }
+.ticker span { font-size: clamp(4rem, 14vw, 13rem); padding-right: .4em; white-space: nowrap; }
+.ticker span:nth-child(even) { -webkit-text-stroke: 1.5px var(--white); color: transparent; }
+.ticker i { color: var(--neon); font-style: normal; font-size: clamp(2rem, 6vw, 5rem); align-self: center; padding-right: .6em; }
+@keyframes tick { to { transform: translateX(-50%); } }
+.legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; color: var(--grey); font-size: .8rem; }
+
+/* entrance */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 55%; }
+    @keyframes rise { from { opacity: .15; transform: translateY(50px); } to { opacity: 1; transform: none; } }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .expand { height: auto; } .expand__sticky { position: relative; } .js .manifesto p .w { color: var(--white); }
+}
+</style>
+</head>
+<body>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader__word wide"><span>Latino</span></div>
+  <div class="loader__bar"></div>
+</div>
+
+<header class="header" id="header">
+  <div class="pad header__bar">
+    <a class="brand" href="#top" aria-label="Grand Café Latino, inicio"><small>Grand Café</small><b class="wide">Latino</b></a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="overlay"><i aria-hidden="true"></i><span data-i18n="menu">Menú</span></button>
+    <div class="header__right">
+      <div class="lang" role="group" aria-label="Idioma" data-lang-switch></div>
+      <a class="pill" href="#planes"><span data-i18n="cta">Reservar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <nav aria-label="Menú">
+    <a class="wide" href="#noches"><span data-i18n="m1">Noches</span><em data-i18n="m1s">abierto cada día</em></a>
+    <a class="wide" href="#suena"><span data-i18n="m2">Música</span><em data-i18n="m2s">lo que suena</em></a>
+    <a class="wide" href="#planes"><span data-i18n="m3">Planes</span><em data-i18n="m3s">y reservas</em></a>
+    <a class="wide" href="#cocteles"><span data-i18n="m4">Cócteles</span><em>9,50 €</em></a>
+    <a class="wide" href="#info"><span data-i18n="m5">Info</span><em data-i18n="m5s">horario y dirección</em></a>
+  </nav>
+  <div class="overlay__foot">
+    <span class="status" data-status><span class="dot"></span><span data-status-text>…</span></span>
+    <span>Rambla de Romà Barnés, 10 · Lloret de Mar</span>
+    <div class="lang" role="group" aria-label="Idioma" data-lang-switch></div>
+  </div>
+</div>
+
+<main id="top">
+  <!-- Hero -->
+  <section class="hero pad">
+    <div class="hero__top label"><span>Grand Café · Lloret de Mar</span><span>Lounge & Terrace</span></div>
+    <h1 class="hero__word wide" data-text="Latino" id="hero-word">Latino</h1>
+    <div class="hero__sub">
+      <p class="hero__claim serif" data-i18n="claim">Música latina, reguetón y cócteles, muy cerca del mar.</p>
+      <ul class="hero__facts">
+        <li class="status" data-status><span class="dot"></span><span data-status-text>…</span></li>
+        <li data-hours-text>…</li>
+        <li>Rambla de Romà Barnés, 10</li>
+      </ul>
+    </div>
+    <div class="scroll-cue label"><span data-i18n="cue">Discoteca en Lloret de Mar</span><span aria-hidden="true">↓</span></div>
+  </section>
+
+  <!-- Foto que se abre -->
+  <section class="expand" id="expand" aria-label="El local">
+    <div class="expand__sticky">
+      <div class="expand__media"><img src="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar.webp" alt="La barra del Grand Café Latino con el neón rosa encendido"></div>
+      <div class="expand__text">
+        <p class="wide" data-i18n="ex1">Un paraíso tropical</p>
+        <p class="serif" data-i18n="ex2">en el corazón de Lloret de Mar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Manifiesto (texto de grandcafelatino.com) -->
+  <section class="manifesto pad" id="manifesto">
+    <span class="label" data-i18n="man_label">La noche</span>
+    <p id="manifesto-text"></p>
+  </section>
+
+  <!-- Lo que suena -->
+  <section class="pad" id="suena">
+    <div class="head">
+      <h2 class="wide"><span data-i18n="suena_t1">Lo que</span> <span class="serif" data-i18n="suena_t2">suena</span></h2>
+      <p data-i18n="suena_p">«Después de las 11 se pone lleno y la fiesta empieza en serio.» Neusdeal, en Google</p>
+    </div>
+    <div class="genres" id="genres">
+      <div class="genre" data-img="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-3-copia.webp"><h3 class="wide"><span data-i18n="g1a">Música</span> <span class="serif" data-i18n="g1b">latina</span></h3></div>
+      <div class="genre" data-img="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-2.webp"><h3 class="wide" data-i18n="g2">Reguetón</h3></div>
+      <div class="genre" data-img="https://grandcafelatino.com/assets/img/2025/07/cocteleria-en-lloret-de-mar-4.webp"><h3 class="wide" data-i18n="g3">Electrónica</h3></div>
+      <div class="genre" data-img="https://grandcafelatino.com/assets/img/2024/10/mojito-de-fresa-en-lloret-de-mar-cocteleria-en-lloret--480x719.jpg"><h3 class="wide"><span data-i18n="g4a">Éxitos</span> <span class="serif" data-i18n="g4b">del momento</span></h3></div>
+    </div>
+  </section>
+  <div class="float-img" id="float-img" aria-hidden="true"><img alt=""></div>
+
+  <!-- Próximas noches -->
+  <section class="section pad" id="noches">
+    <div class="head">
+      <h2 class="wide"><span data-i18n="noches_t1">Próximas</span> <span class="serif" data-i18n="noches_t2">noches</span></h2>
+      <p data-i18n="noches_p">Abrimos los siete días de la semana, de 20:00 a 3:00, también fuera de temporada.</p>
+    </div>
+    <div class="nights" id="nights"></div>
+  </section>
+
+  <!-- Planes -->
+  <section class="section pad" id="planes" style="padding-top:0">
+    <div class="head">
+      <h2 class="wide"><span data-i18n="plan_t1">Tu</span> <span class="serif" data-i18n="plan_t2">plan</span></h2>
+      <p data-i18n="plan_p">Con amigos, en familia o para conocer a alguien especial. Y si quieres organizar un evento, también.</p>
+    </div>
+    <div class="panels" id="panels"></div>
+    <p class="panels-note" data-i18n="plan_note">Pedidos de ejemplo hechos con la carta y los precios de grandcafelatino.com.</p>
+    <div class="contact-row"><span data-i18n="call">Reservas y consultas</span><b>+34 605 26 42 18</b><b>info@grandcafelatino.com</b></div>
+  </section>
+
+  <!-- Cócteles -->
+  <section class="section" id="cocteles" style="padding-top:0">
+    <div class="head pad">
+      <h2 class="wide"><span data-i18n="coc_t1">Cócteles</span> <span class="serif">9,50 €</span></h2>
+      <div class="strip-nav"><button type="button" data-strip="-1" aria-label="Anterior">←</button><button type="button" data-strip="1" aria-label="Siguiente">→</button></div>
+    </div>
+    <div class="strip" id="strip">
+      <article class="drink drink--type" style="--c1:#ff3d9a;--c2:#7a1240"><span class="drink__price">9,50 €</span><div class="big">LF</div><div><h3 class="wide">Latino Frosty</h3><p data-i18n="d_frosty">Tequila, triple seco, zumo de limón, frutos rojos y azúcar.</p></div></article>
+      <article class="drink"><img src="https://grandcafelatino.com/assets/img/2024/10/mojito-de-fresa-en-lloret-de-mar-cocteleria-en-lloret--980x1468.jpg" alt="Mojito de fresa" loading="lazy"><span class="drink__price">9,50 €</span><div><h3 class="wide" data-i18n="d_mf_t">Mojito de fresa</h3><p data-i18n="d_mf">Ron, fresa, hierbabuena, azúcar y limón. Uno de nuestros cócteles estrella.</p></div></article>
+      <article class="drink"><img src="https://grandcafelatino.com/assets/img/2024/10/tequila-sunrise-en-lloret-de-mar-cocteleria-en-lloret--980x1468.jpg" alt="Tequila Sunrise" loading="lazy"><span class="drink__price">9,50 €</span><div><h3 class="wide">Tequila Sunrise</h3><p data-i18n="d_ts">Tequila, zumo de naranja y granadina.</p></div></article>
+      <article class="drink"><img src="https://grandcafelatino.com/assets/img/2025/07/cocteleria-en-lloret-de-mar.webp" alt="Mojito" loading="lazy"><span class="drink__price">9,50 €</span><div><h3 class="wide" data-i18n="d_mo_t">7 mojitos</h3><p data-i18n="d_mo">Coco, fresa, frutos rojos, pasión, menta, mango y sandía.</p></div></article>
+      <article class="drink drink--type" style="--c1:#ffa94d;--c2:#6b3a0e"><span class="drink__price">9,50 €</span><div class="big">PC</div><div><h3 class="wide">Piña colada</h3><p data-i18n="d_pc">Ron blanco, zumo de piña, batido de coco y hielo picado. Uno de nuestros cócteles estrella.</p></div></article>
+      <article class="drink drink--type" style="--c1:#c9ff6b;--c2:#2f4d0d"><span class="drink__price">9,50 €</span><div class="big">Cp</div><div><h3 class="wide">Caipirinha</h3><p data-i18n="d_cp">Licor de cachaza, azúcar, lima y limón.</p></div></article>
+    </div>
+    <div class="extras pad">
+      <span data-i18n-html="x1"><b>Margarita · Daiquiri · Sex on the beach · Caipiroska</b> 9,50 €</span>
+      <span data-i18n-html="x2"><b>Cubos de 6 cervezas</b> Magna, San Miguel, Desperados o Corona · 15 €</span>
+      <span data-i18n-html="x3"><b>Para picar</b> tequeños, empanadas, nachos… de 4,50 € a 10 €</span>
+    </div>
+  </section>
+
+  <!-- Opiniones -->
+  <section class="section pad" id="opiniones" style="padding-top:0">
+    <div class="head">
+      <h2 class="wide"><span data-i18n="op_t1">Lo que</span> <span class="serif" data-i18n="op_t2">dicen</span></h2>
+      <p data-i18n="op_p">Opiniones de Google publicadas en grandcafelatino.com.</p>
+    </div>
+    <div class="reviews" id="reviews"></div>
+  </section>
+
+  <!-- Info -->
+  <section class="section pad" id="info" style="padding-top:0">
+    <div class="head"><h2 class="wide"><span data-i18n="info_t1">Ven</span> <span class="serif" data-i18n="info_t2">esta noche</span></h2></div>
+    <div class="info">
+      <div>
+        <span class="label" data-i18n="i_hours">Horario</span>
+        <ul class="week" id="week"></ul>
+        <p class="week-note" data-i18n="note">También fuera de temporada.</p>
+      </div>
+      <div>
+        <span class="label" data-i18n="i_where">Dónde</span>
+        <p class="addr">Rambla de Romà Barnés, 10<br>17310 Lloret de Mar, Girona</p>
+        <p data-i18n="i_where_p">En el corazón de Lloret de Mar, muy cerca del mar.</p>
+        <a class="pill pill--line" href="https://www.google.com/maps/search/?api=1&query=Grand%20Caf%C3%A9%20Latino%2C%20Rambla%20de%20Rom%C3%A0%20Barn%C3%A9s%2010%2C%20Lloret%20de%20Mar" target="_blank" rel="noopener" style="justify-self:start"><span data-i18n="maps">Cómo llegar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <div>
+        <span class="label" data-i18n="i_follow">Síguenos</span>
+        <div class="socials">
+          <a href="https://www.instagram.com/grandcafelatino/" target="_blank" rel="noopener">Instagram <span>@grandcafelatino ↗</span></a>
+          <a href="https://www.tiktok.com/@grandcafelatino_" target="_blank" rel="noopener">TikTok <span>@grandcafelatino_ ↗</span></a>
+          <a href="https://www.facebook.com/grandcafelatino/" target="_blank" rel="noopener">Facebook <span>↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="ticker wide" aria-hidden="true" id="ticker"></div>
+  <div class="legal pad"><span>© 2026 Grand Café Latino · Lloret de Mar</span><span data-i18n="legal">Bebe con moderación.</span></div>
+</footer>
+
+<script src="../assets/horario.js"></script>
+<script>
+(() => {
+  document.documentElement.classList.add('js');
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+  };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MAIL = 'info@grandcafelatino.com';
+
+  /* Textos sacados de grandcafelatino.com (y sus reseñas de Google publicadas allí) */
+  const I18N = {
+    es: {
+      menu: 'Menú', cta: 'Reservar',
+      m1: 'Noches', m1s: 'abierto cada día', m2: 'Música', m2s: 'lo que suena', m3: 'Planes', m3s: 'y reservas', m4: 'Cócteles', m5: 'Info', m5s: 'horario y dirección',
+      claim: 'Música latina, reguetón y cócteles, muy cerca del mar.', cue: 'Discoteca en Lloret de Mar',
+      ex1: 'Un paraíso tropical', ex2: 'en el corazón de Lloret de Mar.',
+      man_label: 'La noche',
+      man: 'Cuando cae la noche, el ambiente sube: buena música, copas y la mejor vibra hasta las 3:00. Baila, brinda y vive la noche como se merece.',
+      hot: ['sube:', '3:00.', 'Baila,', 'brinda'],
+      suena_t1: 'Lo que', suena_t2: 'suena', suena_p: '«Después de las 11 se pone lleno y la fiesta empieza en serio.» Neusdeal, en Google',
+      g1a: 'Música', g1b: 'latina', g2: 'Reguetón', g3: 'Electrónica', g4a: 'Éxitos', g4b: 'del momento',
+      noches_t1: 'Próximas', noches_t2: 'noches', noches_p: 'Abrimos los siete días de la semana, de 20:00 a 3:00, también fuera de temporada.',
+      now: 'Ahora', today: 'Hoy', book: 'Reservar',
+      plan_t1: 'Tu', plan_t2: 'plan', plan_p: 'Con amigos, en familia o para conocer a alguien especial. Y si quieres organizar un evento, también.',
+      plan_example: 'Pedido de ejemplo', plan_total: 'Total', plan_book: 'Reservar este plan', plan_event_cta: 'Consultar un evento',
+      plan_event_p: 'Cuéntanos la fecha y cuántos seréis, y lo organizamos contigo.',
+      plan_note: 'Pedidos de ejemplo hechos con la carta y los precios de grandcafelatino.com.', call: 'Reservas y consultas',
+      mail_subject: (f) => `Reserva · ${f}`,
+      mail_body: (plan, f) => `Hola, Grand Café Latino. Quería reservar para el ${f}${plan ? ` (plan: ${plan})` : ''}. Somos __ personas. Mi nombre es __.`,
+      event_subject: 'Consulta · evento especial',
+      event_body: 'Hola, Grand Café Latino. Quería consultar un evento especial. Fecha: __. Personas: __. Mi nombre es __.',
+      coc_t1: 'Cócteles',
+      d_frosty: 'Tequila, triple seco, zumo de limón, frutos rojos y azúcar.', d_mf_t: 'Mojito de fresa', d_mf: 'Ron, fresa, hierbabuena, azúcar y limón. Uno de nuestros cócteles estrella.', d_ts: 'Tequila, zumo de naranja y granadina.', d_mo_t: '7 mojitos', d_mo: 'Coco, fresa, frutos rojos, pasión, menta, mango y sandía.', d_pc: 'Ron blanco, zumo de piña, batido de coco y hielo picado. Uno de nuestros cócteles estrella.', d_cp: 'Licor de cachaza, azúcar, lima y limón.',
+      x1: '<b>Margarita · Daiquiri · Sex on the beach · Caipiroska</b> 9,50 €', x2: '<b>Cubos de 6 cervezas</b> Magna, San Miguel, Desperados o Corona · 15 €', x3: '<b>Para picar</b> tequeños, empanadas, nachos… de 4,50 € a 10 €',
+      op_t1: 'Lo que', op_t2: 'dicen', op_p: 'Opiniones de Google publicadas en grandcafelatino.com.', q_src: 'en Google',
+      info_t1: 'Ven', info_t2: 'esta noche', i_hours: 'Horario', i_where: 'Dónde', i_where_p: 'En el corazón de Lloret de Mar, muy cerca del mar.', maps: 'Cómo llegar', i_follow: 'Síguenos',
+      note: 'También fuera de temporada.', legal: 'Bebe con moderación.', ticker: 'Grand Café Latino'
+    },
+    en: {
+      menu: 'Menu', cta: 'Book',
+      m1: 'Nights', m1s: 'open every day', m2: 'Music', m2s: 'what’s playing', m3: 'Plans', m3s: 'and bookings', m4: 'Cocktails', m5: 'Info', m5s: 'hours & address',
+      claim: 'Latin music, reggaeton and cocktails, close to the sea.', cue: 'Nightclub in Lloret de Mar',
+      ex1: 'A tropical paradise', ex2: 'in the heart of Lloret de Mar.',
+      man_label: 'The night',
+      man: 'When night falls, the mood rises: good music, drinks and the best vibe until 3 am. Dance, toast and live the night the way it deserves.',
+      hot: ['rises:', 'am.', 'Dance,', 'toast'],
+      suena_t1: 'What’s', suena_t2: 'playing', suena_p: '“After 11 it fills up and the party really starts.” Neusdeal, on Google',
+      g1a: 'Latin', g1b: 'music', g2: 'Reggaeton', g3: 'Electronic', g4a: 'Today’s', g4b: 'hits',
+      noches_t1: 'Next', noches_t2: 'nights', noches_p: 'We open seven days a week, from 8 pm to 3 am, off season too.',
+      now: 'Now', today: 'Today', book: 'Book',
+      plan_t1: 'Your', plan_t2: 'plan', plan_p: 'With friends, with family or to meet someone special. And if you want to organise an event, we do that too.',
+      plan_example: 'Sample order', plan_total: 'Total', plan_book: 'Book this plan', plan_event_cta: 'Ask about an event',
+      plan_event_p: 'Tell us the date and how many of you there will be, and we’ll organise it with you.',
+      plan_note: 'Sample orders built from the menu and prices on grandcafelatino.com.', call: 'Bookings & questions',
+      mail_subject: (f) => `Booking · ${f}`,
+      mail_body: (plan, f) => `Hi Grand Café Latino. I’d like to book for ${f}${plan ? ` (plan: ${plan})` : ''}. We are __ people. My name is __.`,
+      event_subject: 'Enquiry · special event',
+      event_body: 'Hi Grand Café Latino. I’d like to ask about a special event. Date: __. Guests: __. My name is __.',
+      coc_t1: 'Cocktails',
+      d_frosty: 'Tequila, triple sec, lemon juice, red berries and sugar.', d_mf_t: 'Strawberry mojito', d_mf: 'Rum, strawberry, spearmint, sugar and lemon. One of our star cocktails.', d_ts: 'Tequila, orange juice and grenadine.', d_mo_t: '7 mojitos', d_mo: 'Coconut, strawberry, red berry, passion fruit, mint, mango and watermelon.', d_pc: 'White rum, pineapple juice, coconut milk and crushed ice. One of our star cocktails.', d_cp: 'Cachaça, sugar, lime and lemon.',
+      x1: '<b>Margarita · Daiquiri · Sex on the beach · Caipiroska</b> €9.50', x2: '<b>Buckets of 6 beers</b> Magna, San Miguel, Desperados or Corona · €15', x3: '<b>To share</b> tequeños, empanadas, nachos… €4.50 to €10',
+      op_t1: 'What people', op_t2: 'say', op_p: 'Google reviews published on grandcafelatino.com, translated.', q_src: 'on Google',
+      info_t1: 'Come', info_t2: 'tonight', i_hours: 'Hours', i_where: 'Where', i_where_p: 'In the heart of Lloret de Mar, close to the sea.', maps: 'Directions', i_follow: 'Follow us',
+      note: 'Off season too.', legal: 'Please drink responsibly.', ticker: 'Grand Café Latino'
+    }
+  };
+  const LANGS = { es: 'ES', en: 'EN' };
+  let lang = store.get('gcl-noche-lang') || ((navigator.language || 'es').slice(0, 2) === 'en' ? 'en' : 'es');
+  if (!I18N[lang]) lang = 'es';
+  const t = (k) => I18N[lang][k] ?? I18N.es[k] ?? k;
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  const tri = (es, en) => ({ es, en });
+  const money = (n) => new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR' }).format(n);
+  const mailto = (subject, body) => `mailto:${MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  /* ---------- hero: ajustar "LATINO" al ancho ---------- */
+  const word = $('#hero-word');
+  function fitWord() {
+    const avail = word.parentElement.clientWidth - parseFloat(getComputedStyle(word.parentElement).paddingLeft) * 2;
+    word.style.fontSize = '100px';
+    const w = word.getBoundingClientRect().width;
+    word.style.fontSize = Math.min(100 * avail / w * .98, 420) + 'px';
+  }
+
+  /* ---------- manifiesto: palabra a palabra ---------- */
+  function splitManifesto() {
+    const hot = new Set(I18N[lang].hot);
+    $('#manifesto-text').innerHTML = t('man').split(' ').map((w) => `<span class="w${hot.has(w) ? ' hot' : ''}">${w}</span>`).join(' ');
+  }
+
+  /* ---------- scroll ---------- */
+  const expand = $('#expand');
+  const header = $('#header');
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      header.classList.toggle('is-solid', scrollY > 30);
+      if (!reduce) {
+        const r = expand.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight) * 1.25));
+        expand.style.setProperty('--p', p.toFixed(3));
+      }
+      const m = $('#manifesto').getBoundingClientRect();
+      const mp = Math.min(1, Math.max(0, (innerHeight * .85 - m.top) / (m.height * .9)));
+      const words = $$('#manifesto-text .w');
+      const lit = Math.round(mp * words.length * 1.1);
+      words.forEach((w, i) => w.classList.toggle('on', i < lit || reduce));
+    });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- géneros: imagen que sigue al cursor ---------- */
+  const fl = $('#float-img'); const flImg = fl.querySelector('img');
+  let fx = 0, fy = 0, tx = 0, ty = 0, raf;
+  function follow() { fx += (tx - fx) * .18; fy += (ty - fy) * .18; fl.style.left = fx + 'px'; fl.style.top = fy + 'px'; raf = requestAnimationFrame(follow); }
+  $$('.genre').forEach((g) => {
+    g.addEventListener('mouseenter', (e) => { flImg.src = g.dataset.img; tx = fx = e.clientX; ty = fy = e.clientY; fl.classList.add('on'); cancelAnimationFrame(raf); follow(); });
+    g.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; });
+    g.addEventListener('mouseleave', () => { fl.classList.remove('on'); cancelAnimationFrame(raf); });
+  });
+
+  /* ---------- próximas noches ---------- */
+  const NIGHT_IMGS = [
+    'https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-3-copia.webp',
+    'https://grandcafelatino.com/assets/img/2025/07/cocteleria-en-lloret-de-mar-4.webp',
+    'https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar.webp',
+    'https://grandcafelatino.com/assets/img/2025/07/discoteca-en-lloret-de-mar-2.webp'
+  ];
+  function renderNights() {
+    const st = Horario.status();
+    $('#nights').innerHTML = Horario.nextNights(4).map((n, i) => {
+      const isNow = i === 0 && st.open;
+      const isToday = i === 0 && !st.open && st.inDays === 0;
+      const tag = isNow ? t('now') : isToday ? t('today') : Horario.fmt.weekday(n.date, lang, 'short').replace('.', '');
+      const dd = String(n.date.getUTCDate()).padStart(2, '0'); const mm = String(n.date.getUTCMonth() + 1).padStart(2, '0');
+      const long = Horario.fmt.long(n.date, lang);
+      return `<article class="night reveal" style="--img:url('${NIGHT_IMGS[i % 4]}')">
+        <div class="night__top label"><span>Grand Café Latino</span>${isNow || isToday ? `<span class="night__tag">${tag}</span>` : `<span>${tag}</span>`}</div>
+        <div class="night__date"><b class="wide">${dd}.${mm}</b><span>${cap(long)}</span><small>${n.abre} — ${n.cierra}</small></div>
+        <a class="pill${i === 0 ? ' pill--neon' : ''}" href="${mailto(I18N[lang].mail_subject(long), I18N[lang].mail_body('', long))}">${t('book')} ↗</a>
+      </article>`;
+    }).join('');
+  }
+
+  /* ---------- planes: pedidos de ejemplo con la carta real (grandcafelatino.com/bar) ---------- */
+  const PLANES = [
+    { id: 'amigos', img: 'https://grandcafelatino.com/assets/img/2025/07/discoteca-en-lloret-de-mar-2.webp',
+      name: tri('Amigos', 'Friends'), label: tri('Con amigos · para compartir', 'With friends · to share'),
+      quote: tri('«Tenemos las opciones ideales para compartir con amigos.»', '“We have just the thing to share with friends.”'),
+      items: [[1, tri('Cubo Corona', 'Corona bucket'), 15], [1, tri('Nachos', 'Nachos'), 10], [1, tri('Tequeños de queso', 'Cheese tequeños'), 6.5]] },
+    { id: 'familia', img: 'https://grandcafelatino.com/assets/img/2025/07/cocteleria-en-lloret-de-mar-2.webp',
+      name: tri('Familia', 'Family'), label: tri('En familia · terraza desde las 20:00', 'With family · terrace from 8 pm'),
+      quote: tri('«Muy cerquita del mar, encontrarás nuestra terraza encantadora.»', '“Close to the sea, you’ll find our lovely terrace.”'),
+      items: [[1, tri('Queso manchego', 'Manchego cheese'), 8], [1, tri('Empanadas de pollo', 'Chicken empanadas'), 7], [1, tri('Patata brava Latino', 'Latino patatas bravas'), 4.5], [2, tri('Pepsi', 'Pepsi'), 2]] },
+    { id: 'especial', img: 'https://grandcafelatino.com/assets/img/2024/10/mojito-de-fresa-en-lloret-de-mar-cocteleria-en-lloret--980x1468.jpg', isDefault: true,
+      name: tri('Especial', 'Special'), label: tri('Alguien especial · cócteles estrella', 'Someone special · star cocktails'),
+      quote: tri('«…o para conocer a alguien especial.»', '“…or to meet someone special.”'),
+      items: [[1, tri('Mojito de fresa', 'Strawberry mojito'), 9.5], [1, tri('Piña colada', 'Piña colada'), 9.5], [1, tri('Tequeños de Nutella', 'Nutella tequeños'), 6.5]] },
+    { id: 'evento', img: 'https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-3-copia.webp',
+      name: tri('Eventos', 'Events'), label: tri('Eventos especiales', 'Special events'),
+      quote: tri('«Estamos disponibles para cualquier consulta y, por supuesto, para organizar eventos especiales.»', '“We’re here for any question and, of course, to organise special events.”'),
+      items: [] }
+  ];
+  function renderPlanes() {
+    const next = Horario.nextNights(1)[0];
+    const nextLong = next ? Horario.fmt.long(next.date, lang) : '';
+    $('#panels').innerHTML = PLANES.map((p) => {
+      const total = p.items.reduce((s, [q, , price]) => s + q * price, 0);
+      const body = p.items.length
+        ? `<div class="order"><span class="label">${t('plan_example')}</span><ul>${p.items.map(([q, n, price]) => `<li><b>${q}×</b><span>${n[lang]}</span><span>${money(q * price)}</span></li>`).join('')}</ul><div class="total"><span class="label">${t('plan_total')}</span><strong>${money(total)}</strong></div></div>
+           <a class="pill pill--neon" href="${mailto(I18N[lang].mail_subject(nextLong), I18N[lang].mail_body(p.label[lang].split(' · ')[0], nextLong))}">${t('plan_book')} ↗</a>`
+        : `<p class="event-p">${t('plan_event_p')}</p><a class="pill pill--neon" href="${mailto(t('event_subject'), I18N[lang].event_body)}">${t('plan_event_cta')} ↗</a>`;
+      return `<article class="panel${p.isDefault ? ' is-default' : ''}" tabindex="0" aria-label="${p.label[lang]}">
+        <img src="${p.img}" alt="" loading="lazy">
+        <span class="label">${p.label[lang]}</span>
+        <h3 class="wide">${p.name[lang]}</h3>
+        <div class="more"><p class="quote">${p.quote[lang]}</p>${body}</div>
+      </article>`;
+    }).join('');
+  }
+
+  /* ---------- opiniones (Google, publicadas en grandcafelatino.com/contacta) ---------- */
+  const REVIEWS = [
+    { who: 'Joseph Lovera', date: '2025-05-25', q: tri('Excelente la música, de lo más nuevo latino. Lo recomiendo 100 %.', 'Excellent music, the newest Latin sounds. I recommend it 100%.') },
+    { who: 'Neusdeal', date: '2025-02-09', q: tri('El sitio es pequeño, pero tiene mucha vibra. Después de las 11 se pone lleno y la fiesta empieza en serio.', 'The place is small, but it has a great vibe. After 11 it fills up and the party really starts.') },
+    { who: 'Isis', date: '2025-06-24', q: tri('Espectaculares los cócteles, tanto el tamaño normal como el tamaño XL. Tanto el servicio como el ambiente, un 10.', 'Spectacular cocktails, both the regular and the XL size. Service and atmosphere, a 10.') }
+  ];
+  function renderReviews() {
+    $('#reviews').innerHTML = REVIEWS.map((r) => {
+      const [y, m, d] = r.date.split('-').map(Number);
+      const date = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(y, m - 1, d)));
+      return `<blockquote class="review reveal"><p>«${r.q[lang]}»</p><footer><b>${r.who}</b> · ${t('q_src')} · ${date}</footer></blockquote>`;
+    }).join('');
+  }
+
+  /* ---------- horario ---------- */
+  function renderWeek() {
+    const todayWd = Horario.weekdayIndexToday();
+    $('#week').innerHTML = Horario.week().map((d) => `<li class="${d.open ? 'open' : ''}${d.wd === todayWd ? ' today' : ''}"><span>${Horario.fmt.wdName(d.wd, lang)}</span><span>${d.open ? `${d.abre}–${d.cierra}` : '—'}</span></li>`).join('');
+  }
+  function renderStatus() {
+    const st = Horario.status();
+    $$('[data-status]').forEach((el) => { el.classList.toggle('is-open', st.open); el.querySelector('[data-status-text]').textContent = Horario.statusText(st, lang); });
+    $$('[data-hours-text]').forEach((el) => (el.textContent = Horario.hoursText(lang)));
+  }
+
+  /* ---------- cócteles: arrastrar ---------- */
+  const strip = $('#strip');
+  let down = false, sx = 0, sl = 0;
+  strip.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') return; down = true; sx = e.clientX; sl = strip.scrollLeft; strip.classList.add('dragging'); });
+  addEventListener('pointermove', (e) => { if (down) strip.scrollLeft = sl - (e.clientX - sx); });
+  addEventListener('pointerup', () => { down = false; strip.classList.remove('dragging'); });
+  $$('[data-strip]').forEach((b) => b.addEventListener('click', () => strip.scrollBy({ left: +b.dataset.strip * (strip.querySelector('.drink').offsetWidth + 14), behavior: 'smooth' })));
+
+  /* ---------- menú ---------- */
+  const setMenu = (open) => { document.body.classList.toggle('menu-open', open); $('#menu-btn').setAttribute('aria-expanded', open); $('#overlay').setAttribute('aria-hidden', !open); document.body.style.overflow = open ? 'hidden' : ''; };
+  $('#menu-btn').addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+  $('#overlay').addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+
+  /* ---------- idioma ---------- */
+  function applyLang() {
+    document.documentElement.lang = lang;
+    $$('[data-i18n]').forEach((el) => { const v = I18N[lang][el.dataset.i18n]; if (typeof v === 'string') el.textContent = v; });
+    $$('[data-i18n-html]').forEach((el) => { el.innerHTML = t(el.dataset.i18nHtml); });
+    $$('[data-lang-switch]').forEach((g) => (g.innerHTML = Object.entries(LANGS).map(([k, v]) => `<button type="button" data-lang="${k}" aria-pressed="${k === lang}" lang="${k}">${v}</button>`).join('')));
+    $('#ticker').innerHTML = `<span>${t('ticker')}</span><i>✦</i>`.repeat(8);
+    splitManifesto(); renderNights(); renderPlanes(); renderReviews(); renderWeek(); renderStatus(); onScroll();
+  }
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-lang]'); if (!b) return; lang = b.dataset.lang; store.set('gcl-noche-lang', lang); applyLang(); });
+
+  applyLang();
+  const start = () => { fitWord(); document.body.classList.add('ready'); };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(start, reduce ? 0 : 1100));
+  setTimeout(() => document.body.classList.add('ready'), 3000);
+  addEventListener('resize', () => { fitWord(); onScroll(); });
+  setInterval(renderStatus, 60000);
+})();
+</script>
+</body>
+</html>

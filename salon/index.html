@@ -1,0 +1,1194 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grand Café Latino · Lloret de Mar</title>
+<meta name="description" content="Grand Café Latino, bar musical y discoteca en Lloret de Mar: cócteles, mojitos, música latina y terraza muy cerca del mar. Todos los días de 20:00 a 3:00.">
+<meta name="theme-color" content="#0a1511">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Jost:wght@300..600&family=Yellowtail&display=swap">
+<style>
+/* Layout: salón art déco de noche. Columna de 1240px, secciones que alternan lacado verde y negro verdoso; el latón hace de hilo conductor y el neón rosa aparece solo en la palabra "Latino". */
+:root {
+  --ink: #0a1511;
+  --lacquer: #10231c;
+  --lacquer-2: #173229;
+  --brass: #c9a35f;
+  --brass-hi: #e6cf9c;
+  --cream: #f1e9d8;
+  --muted: #9fb3a8;
+  --neon: #ff4fa3;
+  --neon-soft: #ffd9ec;
+  --ok: #6fe3a5;
+  --line: rgba(201, 163, 95, .28);
+  --line-soft: rgba(241, 233, 216, .1);
+
+  --f-display: 'Bodoni Moda', 'Bodoni 72', Didot, Georgia, serif;
+  --f-body: 'Jost', Futura, 'Century Gothic', 'Avenir Next', system-ui, sans-serif;
+  --f-neon: 'Yellowtail', 'Brush Script MT', cursive;
+
+  --t-xs: .75rem; --t-sm: .875rem; --t-md: 1.0625rem; --t-lg: 1.375rem; --t-xl: clamp(1.9rem, 3.6vw, 2.9rem); --t-2xl: clamp(2.6rem, 6.4vw, 5.4rem); --t-hero: clamp(3rem, 8.6vw, 7.6rem);
+  --wrap: 1240px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-h: 72px;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--ink); color: var(--cream); font: 400 var(--t-md)/1.65 var(--f-body); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--brass-hi); outline-offset: 3px; }
+[hidden] { display: none !important; }
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--gutter); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- type ---------- */
+.eyebrow { font: 500 var(--t-xs)/1.2 var(--f-body); letter-spacing: .26em; text-transform: uppercase; color: var(--brass); margin: 0; display: flex; align-items: center; gap: .9em; }
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 500; text-wrap: balance; margin: 0; line-height: 1.02; letter-spacing: -.01em; }
+h2.title { font-size: var(--t-2xl); }
+h2.title em, .hero__title em { font-style: italic; color: var(--brass-hi); }
+.lede { font-size: var(--t-lg); line-height: 1.55; color: var(--muted); max-width: 34em; font-weight: 300; margin: 0; }
+p { margin: 0; }
+.neon { font-family: var(--f-neon); font-weight: 400; color: var(--neon-soft); text-shadow: 0 0 2px #fff, 0 0 10px var(--neon), 0 0 26px var(--neon), 0 0 60px rgba(255, 79, 163, .55); }
+
+/* ---------- buttons & chips ---------- */
+.btn { --b: var(--brass); display: inline-flex; align-items: center; justify-content: center; gap: .6em; min-height: 50px; padding: 0 1.6em; border: 1px solid var(--b); border-radius: 2px; text-decoration: none; cursor: pointer; font: 500 var(--t-sm)/1 var(--f-body); letter-spacing: .18em; text-transform: uppercase; transition: background .25s, color .25s, box-shadow .25s; background: transparent; color: var(--cream); }
+.btn--brass { background: var(--brass); color: var(--ink); box-shadow: inset 0 0 0 3px var(--brass), inset 0 0 0 4px rgba(10, 21, 17, .35); }
+.btn--brass:hover { background: var(--brass-hi); box-shadow: inset 0 0 0 3px var(--brass-hi), inset 0 0 0 4px rgba(10, 21, 17, .35); }
+.btn--ghost:hover { background: rgba(201, 163, 95, .12); }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.chip { display: inline-flex; align-items: center; gap: .55em; padding: .45em .95em; border-radius: 999px; background: rgba(10, 21, 17, .7); border: 1px solid var(--line); font-size: var(--t-xs); letter-spacing: .06em; white-space: nowrap; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brass); flex: none; }
+.is-open .dot { background: var(--ok); box-shadow: 0 0 0 0 rgba(111, 227, 165, .6); animation: pulse 2s infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(111, 227, 165, 0); } 100% { box-shadow: 0 0 0 0 rgba(111, 227, 165, 0); } }
+
+/* ---------- lattice (las celosías blancas del salón) ---------- */
+.celosia { height: 30px; opacity: .55; background-image: repeating-linear-gradient(45deg, var(--line) 0 1px, transparent 1px 15px), repeating-linear-gradient(-45deg, var(--line) 0 1px, transparent 1px 15px); border-block: 1px solid var(--line); }
+
+/* ---------- gate ---------- */
+.gate { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px var(--gutter); background: var(--ink); overflow: auto; transition: opacity .7s ease, visibility .7s; }
+.gate__bg { position: absolute; inset: 0; background: url("https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-3-copia.webp") center/cover; filter: blur(14px) saturate(1.1) brightness(.42); transform: scale(1.1); }
+.gate__bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10, 21, 17, .35), var(--ink) 75%); }
+.gate__inner { position: relative; display: grid; justify-items: center; gap: 22px; text-align: center; max-width: 520px; }
+.monogram { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 1px solid var(--line); position: relative; }
+.monogram img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.7); filter: grayscale(1) contrast(2.4) brightness(.95); mix-blend-mode: screen; }
+.gate h1 { display: grid; gap: 0; }
+.gate .grand { font: 500 clamp(1rem, 2.4vw, 1.2rem)/1 var(--f-body); letter-spacing: .5em; text-transform: uppercase; color: var(--brass-hi); padding-left: .5em; }
+.gate .neon { font-size: clamp(4.6rem, 15vw, 7.2rem); line-height: 1.05; animation: flicker 2.6s ease-out 1 both; }
+@keyframes flicker { 0%, 8%, 12%, 30% { opacity: .25; } 10%, 14%, 33%, 100% { opacity: 1; } }
+.gate__addr { color: var(--muted); font-size: var(--t-sm); letter-spacing: .08em; }
+.gate .btn { min-width: 220px; }
+.lang { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; }
+.lang button { border: 0; background: none; padding: .45em .95em; border-radius: 999px; font-size: var(--t-xs); letter-spacing: .14em; cursor: pointer; color: var(--muted); }
+.lang button[aria-pressed="true"] { background: var(--brass); color: var(--ink); }
+body.entered .gate { opacity: 0; visibility: hidden; }
+body:not(.entered) { overflow: hidden; }
+
+/* ---------- header ---------- */
+.header { position: fixed; top: 0; inset-inline: 0; z-index: 50; padding-top: env(safe-area-inset-top, 0px); transition: background .35s, border-color .35s; border-bottom: 1px solid transparent; }
+.header.is-solid { background: rgba(10, 21, 17, .86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line-soft); }
+.header__bar { height: var(--header-h); display: flex; align-items: center; gap: 20px; }
+.wordmark { display: flex; align-items: baseline; gap: .45em; text-decoration: none; margin-right: auto; white-space: nowrap; }
+.wordmark b { font: 500 .78rem/1 var(--f-body); letter-spacing: .38em; text-transform: uppercase; color: var(--brass-hi); }
+.wordmark .neon { font-size: 1.9rem; line-height: 1; text-shadow: 0 0 2px #fff, 0 0 8px var(--neon), 0 0 18px rgba(255, 79, 163, .7); }
+.nav { display: flex; gap: 26px; }
+.nav a { text-decoration: none; font-size: var(--t-xs); letter-spacing: .2em; text-transform: uppercase; color: var(--cream); opacity: .82; padding-block: 6px; border-bottom: 1px solid transparent; }
+.nav a:hover { opacity: 1; border-color: var(--brass); }
+.header .btn { min-height: 40px; padding: 0 1.1em; font-size: var(--t-xs); }
+.burger { display: none; width: 44px; height: 44px; border: 1px solid var(--line); background: none; border-radius: 50%; cursor: pointer; place-items: center; }
+.burger span { display: block; width: 16px; height: 1px; background: var(--cream); box-shadow: 0 -5px 0 var(--cream), 0 5px 0 var(--cream); }
+.header .lang button { padding: .4em .7em; }
+@media (max-width: 1080px) { .nav { display: none; } .burger { display: grid; } }
+@media (max-width: 640px) { .header .lang, .header .chip { display: none; } .header .btn { display: none; } }
+
+.drawer { position: fixed; inset: 0; z-index: 60; background: var(--ink); display: grid; align-content: center; gap: 28px; padding: 80px var(--gutter) 40px; opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s; }
+.drawer.open { opacity: 1; visibility: visible; }
+.drawer nav { display: grid; gap: 4px; }
+.drawer nav a { font: italic 500 clamp(2.2rem, 9vw, 3.6rem)/1.15 var(--f-display); text-decoration: none; }
+.drawer nav a:hover { color: var(--brass-hi); }
+.drawer__close { position: absolute; top: calc(14px + env(safe-area-inset-top, 0px)); right: var(--gutter); width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 1.4rem; line-height: 1; }
+.drawer__foot { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; min-height: clamp(600px, 92vh, 900px); display: grid; align-content: end; padding-top: calc(var(--header-h) + 40px); isolation: isolate; overflow: hidden; }
+.hero__media { position: absolute; inset: 0; margin: 0; z-index: -1; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 40%; animation: drift 24s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: scale(1.04); } to { transform: scale(1.12) translateX(-1.5%); } }
+.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10, 21, 17, .94) 0%, rgba(10, 21, 17, .7) 42%, rgba(10, 21, 17, .15) 75%), linear-gradient(0deg, var(--ink) 0%, transparent 38%); }
+.hero__copy { display: grid; gap: 26px; padding-bottom: 48px; }
+.hero__title { font-size: var(--t-hero); font-weight: 500; max-width: 9.5em; line-height: .98; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.ribbon { list-style: none; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px 34px; padding-block: 20px; border-top: 1px solid var(--line); font-size: var(--t-sm); color: var(--muted); }
+.ribbon li { display: flex; align-items: center; gap: .6em; }
+.ribbon svg { width: 16px; height: 16px; color: var(--brass); flex: none; }
+.ribbon .is-open { color: var(--cream); }
+
+/* ---------- journey ---------- */
+.journey { padding-block: 56px 64px; }
+.journey ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); position: relative; }
+.journey ol::before { content: ""; position: absolute; top: 44px; left: 10%; right: 10%; border-top: 2px dotted var(--brass); opacity: .55; }
+.journey li { position: relative; }
+.journey a { display: grid; justify-items: center; gap: 10px; text-align: center; text-decoration: none; padding-inline: 6px; }
+.journey .ring { width: 88px; height: 88px; border-radius: 50%; padding: 4px; border: 1px solid var(--brass); background: var(--ink); transition: transform .3s; }
+.journey .ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.journey a:hover .ring { transform: translateY(-4px); }
+.journey strong { font: italic 500 1.2rem/1.1 var(--f-display); }
+.journey span { font-size: var(--t-xs); color: var(--muted); letter-spacing: .04em; }
+@media (max-width: 760px) {
+  .journey .wrap { padding-inline: 0; }
+  .journey ol { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: var(--gutter); gap: 8px; scrollbar-width: none; }
+  .journey ol::-webkit-scrollbar { display: none; }
+  .journey li { flex: 0 0 132px; scroll-snap-align: start; }
+  .journey ol::before { left: calc(var(--gutter) + 66px); right: auto; width: calc(132px * 4 + 32px); }
+}
+
+/* ---------- sections ---------- */
+.section { padding-block: clamp(72px, 10vw, 128px); }
+.section--lacquer { background: var(--lacquer); }
+.section__head { display: grid; gap: 20px; margin-bottom: clamp(36px, 5vw, 60px); }
+
+/* casa */
+.casa { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
+.arch { border-radius: 1000px 1000px 0 0; overflow: hidden; border: 1px solid var(--line); padding: 8px; background: var(--ink); }
+.arch img { width: 100%; height: 100%; object-fit: cover; border-radius: 1000px 1000px 0 0; }
+.casa__photo { aspect-ratio: 3 / 4.2; max-width: 100%; }
+.casa__text { display: grid; gap: 26px; padding-top: 12px; min-width: 0; }
+.casa__text p { color: var(--muted); max-width: 36em; }
+.casa__text p strong { color: var(--cream); font-weight: 400; }
+.casa__inset { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: end; }
+.casa__inset figure { margin: 0; }
+.casa__inset figcaption { font-size: var(--t-xs); color: var(--muted); letter-spacing: .06em; margin-top: 10px; }
+.casa__inset .arch { aspect-ratio: 3 / 4; }
+.casa__inset .rect { aspect-ratio: 4 / 3; overflow: hidden; border: 1px solid var(--line); padding: 8px; }
+.casa__inset .rect img { width: 100%; height: 100%; object-fit: cover; }
+.spaces { margin-top: clamp(56px, 7vw, 96px); display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+.spaces article { padding: 28px 24px 8px 0; display: grid; gap: 10px; align-content: start; }
+.spaces article + article { padding-left: 24px; border-left: 1px solid var(--line-soft); }
+.spaces h3 { font-size: 1.6rem; font-style: italic; }
+.spaces p { color: var(--muted); font-size: var(--t-sm); }
+.spaces .ico { width: 28px; height: 28px; color: var(--brass); }
+@media (max-width: 900px) {
+  .casa { grid-template-columns: 1fr; }
+  .casa__photo { max-width: 420px; }
+  .spaces { grid-template-columns: 1fr 1fr; }
+  .spaces article:nth-child(3) { padding-left: 0; border-left: 0; }
+  .spaces article:nth-child(n+3) { border-top: 1px solid var(--line-soft); }
+}
+@media (max-width: 520px) { .spaces { grid-template-columns: 1fr; } .spaces article + article { padding-left: 0; border-left: 0; border-top: 1px solid var(--line-soft); } .casa__inset { grid-template-columns: 1fr; } }
+
+/* noche */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 18px; margin-block: 8px 56px; }
+.marquee__track { display: flex; width: max-content; animation: slide 38s linear infinite; }
+.marquee__track span { font: italic 500 clamp(2.6rem, 7vw, 6rem)/1 var(--f-display); padding-inline: .35em; white-space: nowrap; }
+.marquee__track span:nth-child(even) { color: transparent; -webkit-text-stroke: 1px var(--brass); font-style: normal; }
+.marquee__track i { font-style: normal; color: var(--neon); align-self: center; font-size: 1.4rem; text-shadow: 0 0 12px var(--neon); }
+@keyframes slide { to { transform: translateX(-50%); } }
+.noche__intro { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
+.gallery { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; margin-top: 48px; scrollbar-color: var(--brass) transparent; scrollbar-width: thin; }
+.gallery figure { margin: 0; flex: 0 0 min(78vw, 440px); scroll-snap-align: start; }
+.gallery figure:nth-child(odd) { flex-basis: min(64vw, 340px); }
+.gallery .frame { aspect-ratio: 4 / 5; overflow: hidden; border: 1px solid var(--line); padding: 6px; }
+.gallery figure:nth-child(odd) .frame { border-radius: 1000px 1000px 0 0; }
+.gallery figure:nth-child(odd) .frame img { border-radius: 1000px 1000px 0 0; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.gallery figure:hover img { transform: scale(1.04); }
+.gallery figcaption { margin-top: 10px; font: italic 400 1.05rem/1.3 var(--f-display); color: var(--muted); }
+@media (max-width: 760px) { .noche__intro { grid-template-columns: 1fr; } }
+
+/* carta */
+.carta { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.tabs { display: flex; gap: 26px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.tabs button { flex: none; background: none; border: 0; padding: 12px 0; cursor: pointer; font: 500 var(--t-xs)/1 var(--f-body); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--cream); border-color: var(--brass); }
+.menu { list-style: none; margin: 0; padding: 0; }
+.menu li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 18px; padding: 20px 0; border-bottom: 1px solid var(--line-soft); align-items: center; }
+.menu .name { display: flex; align-items: baseline; gap: 12px; font: 500 1.45rem/1.15 var(--f-display); }
+.menu .name::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(201, 163, 95, .5); transform: translateY(-5px); min-width: 20px; }
+.menu .badge { font: 500 .62rem/1 var(--f-body); letter-spacing: .2em; text-transform: uppercase; color: var(--ink); background: var(--brass); padding: .45em .6em; border-radius: 2px; align-self: center; flex: none; }
+.menu .desc { grid-column: 1; color: var(--muted); font-size: var(--t-sm); }
+.menu .side { grid-row: 1 / span 2; grid-column: 2; display: flex; align-items: center; gap: 14px; }
+.menu .price { font: 500 1.2rem/1 var(--f-display); font-variant-numeric: tabular-nums lining-nums; color: var(--brass-hi); min-width: 4.4ch; text-align: right; }
+.add { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--brass); background: none; cursor: pointer; display: grid; place-items: center; color: var(--brass-hi); font-size: 1.3rem; line-height: 1; transition: background .2s, color .2s; position: relative; }
+.add:hover { background: var(--brass); color: var(--ink); }
+.add .qty { position: absolute; top: -6px; right: -6px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--neon); color: #fff; font: 600 .7rem/20px var(--f-body); text-align: center; }
+.menu-note { margin-top: 22px; color: var(--muted); font-size: var(--t-sm); display: flex; gap: .6em; align-items: center; }
+.menu-note svg { width: 18px; height: 18px; color: var(--brass); flex: none; }
+.ronda { position: sticky; top: calc(var(--header-h) + 20px); background: var(--ink); border: 1px solid var(--line); padding: 28px; display: grid; gap: 18px; }
+.ronda::before { content: ""; position: absolute; inset: 6px; border: 1px solid var(--line-soft); pointer-events: none; }
+.ronda h3 { font-size: 2rem; font-style: italic; }
+.ronda__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; max-height: 300px; overflow: auto; }
+.ronda__list li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; font-size: var(--t-sm); }
+.ronda__list .stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; }
+.ronda__list .stepper button { width: 28px; height: 28px; border: 0; background: none; cursor: pointer; color: var(--brass-hi); }
+.ronda__list .stepper output { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
+.ronda__list .sub { font-variant-numeric: tabular-nums; color: var(--muted); }
+.ronda__empty { color: var(--muted); font-size: var(--t-sm); padding: 18px 0; border-block: 1px dashed var(--line-soft); text-align: center; }
+.ronda__total { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--line); padding-top: 16px; }
+.ronda__total strong { font: 500 2rem/1 var(--f-display); font-variant-numeric: tabular-nums lining-nums; color: var(--brass-hi); }
+.ronda__total span { font-size: var(--t-xs); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.ronda__actions { display: grid; gap: 10px; }
+.ronda__actions .btn { width: 100%; }
+.ronda__actions .btn[disabled] { opacity: .4; cursor: not-allowed; }
+.link-btn { background: none; border: 0; color: var(--muted); font-size: var(--t-sm); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; justify-self: center; }
+.ronda-bar { position: fixed; z-index: 40; left: var(--gutter); right: var(--gutter); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: none; }
+.ronda-bar a { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--brass); color: var(--ink); text-decoration: none; font-weight: 500; letter-spacing: .08em; box-shadow: 0 10px 40px rgba(0, 0, 0, .5); border-radius: 2px; }
+@media (max-width: 960px) {
+  .carta { grid-template-columns: 1fr; }
+  .ronda { position: static; }
+  body.has-ronda .ronda-bar { display: block; }
+  body.has-ronda.ronda-visible .ronda-bar { display: none; }
+}
+@media (max-width: 480px) { .menu .name { font-size: 1.2rem; } .menu .name::after { display: none; } .menu .side { gap: 10px; } }
+
+.barview { position: fixed; inset: 0; z-index: 90; background: #000; display: grid; align-content: center; justify-items: center; gap: 28px; padding: 40px var(--gutter); text-align: center; overflow: auto; }
+.barview h3 { font-size: clamp(2.6rem, 10vw, 5rem); }
+.barview ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.barview li { font: 500 clamp(1.6rem, 6vw, 3rem)/1.15 var(--f-display); }
+.barview li b { color: var(--neon); text-shadow: 0 0 14px var(--neon); font-weight: 600; margin-right: .3em; }
+.barview .total { font-size: var(--t-lg); color: var(--brass-hi); letter-spacing: .1em; }
+
+/* planes */
+.planes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.plan { position: relative; display: grid; grid-template-rows: auto auto 1fr auto; gap: 18px; min-width: 0; padding: 70px 22px 22px; border: 1px solid var(--line); border-radius: 50% 50% 3px 3px / 150px 150px 3px 3px; background: linear-gradient(180deg, rgba(201, 163, 95, .07), transparent 45%); transition: border-color .3s, box-shadow .3s; }
+.plan header { text-align: center; display: grid; gap: 8px; }
+.plan__tag { font-size: var(--t-xs); letter-spacing: .2em; text-transform: uppercase; color: var(--brass); }
+.plan h3 { font-size: 1.9rem; font-style: italic; }
+.plan__quote { font: italic 400 1.02rem/1.45 var(--f-display); color: var(--muted); text-align: center; text-wrap: balance; }
+.plan__order { display: grid; gap: 10px; align-content: start; padding-top: 16px; border-top: 1px solid var(--line-soft); }
+.plan__order .label { font-size: var(--t-xs); letter-spacing: .2em; text-transform: uppercase; color: var(--brass); }
+.plan__order ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--t-sm); }
+.plan__order li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
+.plan__order li b { color: var(--neon-soft); font-weight: 500; font-variant-numeric: tabular-nums; }
+.plan__order li span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
+.plan__total { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--line); padding-top: 12px; }
+.plan__total span { font-size: var(--t-xs); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.plan__total strong { font: 500 1.9rem/1 var(--f-display); font-variant-numeric: tabular-nums lining-nums; color: var(--brass-hi); }
+.plan__event { color: var(--muted); font-size: var(--t-sm); padding-top: 16px; border-top: 1px solid var(--line-soft); }
+.plan__actions { display: grid; gap: 8px; }
+.plan__actions .btn { width: 100%; min-height: 44px; padding: 0 1em; font-size: var(--t-xs); }
+.plan.is-picked { border-color: var(--neon); box-shadow: 0 0 0 1px var(--neon), 0 0 44px rgba(255, 79, 163, .18); }
+.planes-note { margin-top: 18px; display: flex; gap: .6em; align-items: center; font-size: var(--t-xs); color: var(--muted); letter-spacing: .04em; }
+.planes-note svg { width: 16px; height: 16px; color: var(--brass); flex: none; }
+@media (max-width: 1100px) { .planes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 580px) { .planes { grid-template-columns: 1fr; } .plan { border-radius: 50% 50% 3px 3px / 110px 110px 3px 3px; padding-top: 56px; } }
+
+/* reservas */
+.reservas { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(32px, 5vw, 80px); margin-top: clamp(64px, 8vw, 110px); }
+.reservas__aside { display: grid; gap: 24px; align-content: start; }
+.reservas__aside .arch { aspect-ratio: 4 / 5; max-width: 360px; }
+.title-sm { font-size: var(--t-xl); }
+.title-sm em { font-style: italic; color: var(--brass-hi); }
+.contact-lines { display: grid; gap: 10px; font-size: var(--t-sm); margin: 0; }
+.contact-lines div { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.contact-lines dt { color: var(--muted); letter-spacing: .14em; text-transform: uppercase; font-size: var(--t-xs); min-width: 90px; }
+.contact-lines dd { margin: 0; font-variant-numeric: tabular-nums; user-select: all; }
+form.booking { display: grid; gap: 26px; background: var(--ink); border: 1px solid var(--line); padding: clamp(22px, 4vw, 40px); min-width: 0; }
+.field { display: grid; gap: 10px; min-width: 0; }
+.field > label, .field > legend, .field .label { font-size: var(--t-xs); letter-spacing: .22em; text-transform: uppercase; color: var(--brass); padding: 0; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.types { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.types label { position: relative; cursor: pointer; }
+.types input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.types span { display: grid; gap: 6px; justify-items: center; padding: 16px 8px; border: 1px solid var(--line-soft); text-align: center; font-size: var(--t-sm); transition: border-color .2s, background .2s; height: 100%; }
+.types svg { width: 24px; height: 24px; color: var(--brass); }
+.types input:checked + span { border-color: var(--brass); background: rgba(201, 163, 95, .1); }
+.types input:focus-visible + span { outline: 2px solid var(--brass-hi); outline-offset: 2px; }
+.row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.input, select.input, textarea.input { width: 100%; min-height: 50px; background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 10px 2px; font-size: var(--t-md); color: var(--cream); border-radius: 0; }
+textarea.input { min-height: 80px; resize: vertical; }
+select.input option { background: var(--ink); }
+.input:focus { outline: none; border-color: var(--brass-hi); }
+.stepper-lg { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); min-height: 50px; }
+.stepper-lg button { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: none; cursor: pointer; color: var(--brass-hi); font-size: 1.1rem; }
+.stepper-lg output { font: 500 1.5rem/1 var(--f-display); font-variant-numeric: tabular-nums lining-nums; }
+.hint { font-size: var(--t-sm); color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.hint.warn { color: var(--neon-soft); }
+.hint button { background: none; border: 1px solid var(--neon); color: var(--neon-soft); border-radius: 999px; padding: .3em .9em; cursor: pointer; font-size: var(--t-xs); letter-spacing: .08em; }
+.preview { border-left: 2px solid var(--brass); padding: 14px 18px; background: rgba(201, 163, 95, .06); font-size: var(--t-sm); color: var(--cream); white-space: pre-wrap; overflow-wrap: anywhere; }
+.submit-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.submit-row .btn { flex: 1 1 220px; }
+@media (max-width: 960px) { .reservas { grid-template-columns: 1fr; } .reservas__aside .arch { display: none; } }
+@media (max-width: 620px) { .types { grid-template-columns: 1fr 1fr; } .row { grid-template-columns: 1fr 1fr; } .row .field:first-child { grid-column: 1 / -1; } }
+
+/* horario */
+.horario { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.subhead { font: italic 500 1.6rem/1.1 var(--f-display); margin: 0 0 18px; }
+.timeline { display: grid; gap: 10px; }
+.tl-ticks { position: relative; height: 18px; font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tl-ticks span { position: absolute; transform: translateX(-50%); }
+.tl-ticks span:first-child { transform: none; }
+.tl-ticks span:last-child { transform: translateX(-100%); }
+.tl-bar { position: relative; height: 46px; border: 1px solid var(--line); background: repeating-linear-gradient(90deg, var(--line-soft) 0 1px, transparent 1px calc(100% / 7)); }
+.tl-seg { position: absolute; top: 6px; bottom: 6px; display: flex; align-items: center; padding-inline: 12px; font-size: .74rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); white-space: nowrap; overflow: hidden; }
+.tl-seg--early { left: 0; width: calc(300% / 7); background: linear-gradient(90deg, var(--brass), var(--brass-hi)); }
+.tl-seg--late { left: calc(300% / 7); width: calc(400% / 7); background: linear-gradient(90deg, var(--brass-hi), var(--neon)); }
+.tl-now { position: absolute; top: -6px; bottom: -6px; width: 2px; background: var(--cream); box-shadow: 0 0 10px var(--cream); }
+.tl-now::after { content: attr(data-label); position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--cream); white-space: nowrap; }
+.tl-notes { display: grid; grid-template-columns: 3fr 4fr; gap: 20px; margin-top: 12px; }
+.tl-notes article { display: grid; gap: 6px; align-content: start; padding-top: 12px; border-top: 1px solid var(--line-soft); min-width: 0; }
+.tl-notes b { font: italic 500 1.3rem/1.1 var(--f-display); color: var(--brass-hi); }
+.tl-notes p { color: var(--muted); font-size: var(--t-sm); }
+.tl-notes cite { font-style: normal; font-size: var(--t-xs); color: var(--muted); letter-spacing: .04em; }
+.days { list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.days li { display: grid; gap: 4px; justify-items: center; padding: 12px 4px; border: 1px solid var(--line-soft); font-size: var(--t-xs); color: var(--muted); text-align: center; font-variant-numeric: tabular-nums; }
+.days li b { color: var(--cream); font-weight: 500; letter-spacing: .08em; text-transform: capitalize; }
+.days li.today { border-color: var(--brass); background: rgba(201, 163, 95, .08); }
+.days li.today b { color: var(--brass-hi); }
+.nights { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.nights li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line-soft); }
+.nights .date { font: 500 2.3rem/1 var(--f-display); font-variant-numeric: lining-nums; color: var(--brass-hi); min-width: 2ch; }
+.nights .meta { display: grid; gap: 2px; font-size: var(--t-sm); }
+.nights .meta b { font-weight: 500; }
+.nights .meta span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.nights a { font-size: var(--t-xs); letter-spacing: .18em; text-transform: uppercase; color: var(--brass-hi); text-decoration: none; border-bottom: 1px solid var(--brass); padding-bottom: 2px; }
+@media (max-width: 900px) { .horario { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .tl-ticks span:not(:nth-child(1)):not(:nth-child(4)):not(:nth-child(8)) { display: none; }
+  .tl-seg { font-size: .62rem; padding-inline: 8px; letter-spacing: .06em; }
+  .tl-notes { grid-template-columns: 1fr; }
+  .days { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* opiniones */
+.quotes { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 5vw, 64px) clamp(28px, 5vw, 72px); }
+.quotes blockquote { margin: 0; display: grid; gap: 16px; align-content: start; }
+.quotes blockquote p { font: italic 400 clamp(1.4rem, 2.6vw, 2.1rem)/1.22 var(--f-display); text-wrap: balance; }
+.quotes blockquote p::before { content: "«"; color: var(--brass); }
+.quotes blockquote p::after { content: "»"; color: var(--brass); }
+.quotes footer { font-size: var(--t-sm); color: var(--muted); letter-spacing: .04em; }
+.quotes footer b { color: var(--cream); font-weight: 500; }
+.source-note { margin-top: 40px; font-size: var(--t-xs); color: var(--muted); letter-spacing: .06em; }
+@media (max-width: 760px) { .quotes { grid-template-columns: 1fr; } }
+
+/* llegar */
+.llegar { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.map { position: relative; aspect-ratio: 1629 / 982; overflow: hidden; border: 1px solid var(--line); max-width: 100%; }
+.map img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) invert(1) contrast(.85) brightness(.9) sepia(.35) hue-rotate(95deg) saturate(1.4); }
+.map::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 47% 56%, transparent 30%, rgba(10, 21, 17, .55) 90%); pointer-events: none; }
+.pin { position: absolute; left: 46.8%; top: 55.4%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 0 4px rgba(255, 79, 163, .25), 0 0 24px var(--neon); z-index: 1; }
+.pin::after { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 1px solid var(--neon); animation: ring 2.2s ease-out infinite; }
+@keyframes ring { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.6); opacity: 0; } }
+.pin-label { position: absolute; left: calc(46.8% + 18px); top: calc(55.4% - 30px); z-index: 1; background: var(--ink); border: 1px solid var(--brass); padding: 6px 10px; font: italic 500 .95rem/1 var(--f-display); white-space: nowrap; }
+.llegar__info { display: grid; gap: 24px; }
+.addr { font: 500 clamp(1.35rem, 2.3vw, 1.8rem)/1.3 var(--f-display); }
+.copy-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.copy-btn { background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: .4em .9em; font-size: var(--t-xs); letter-spacing: .1em; cursor: pointer; }
+@media (max-width: 900px) { .llegar { grid-template-columns: 1fr; } }
+
+/* footer */
+.footer { padding-block: 80px 40px; border-top: 1px solid var(--line); background: var(--ink); }
+.footer__big { display: grid; justify-items: center; text-align: center; gap: 8px; margin-bottom: 56px; }
+.footer__big b { font: 500 .9rem/1 var(--f-body); letter-spacing: .6em; text-transform: uppercase; color: var(--brass-hi); padding-left: .6em; }
+.footer__big .neon { font-size: clamp(4.4rem, 16vw, 10rem); line-height: 1; }
+.socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 48px; }
+.socials a { display: inline-flex; align-items: center; gap: .6em; padding: .7em 1.2em; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; font-size: var(--t-sm); }
+.socials a:hover { border-color: var(--brass); background: rgba(201, 163, 95, .08); }
+.socials svg { width: 18px; height: 18px; color: var(--brass); }
+.footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: var(--t-xs); color: var(--muted); letter-spacing: .06em; border-top: 1px solid var(--line-soft); padding-top: 22px; }
+.footer__legal a { color: var(--muted); }
+
+/* entrance animations: visible by default, animated only where scroll timelines exist */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+    @keyframes rise { from { opacity: .2; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-glass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h14l-7 8-7-8ZM12 12v8M8 20h8"/></symbol>
+  <symbol id="i-group" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M15 14.5c3 0 6 1.7 6 5"/></symbol>
+  <symbol id="i-floor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M5.6 5.6l2 2M18.4 5.6l-2 2"/><circle cx="12" cy="13" r="4"/><path d="M3 21h18"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20h16M7 20a5 5 0 0 1 10 0M12 9V6M5.5 12.5 3.5 11M18.5 12.5l2-1.5M8 9.5 6.8 7.5M16 9.5l1.2-2"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-tt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 2.8 2.4 4.5 5 4.6"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8Z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20s-7.5-4.6-9-9.3C1.9 7.2 4 4 7.2 4c2 0 3.6 1.2 4.8 3 1.2-1.8 2.8-3 4.8-3C20 4 22.1 7.2 21 10.7 19.5 15.4 12 20 12 20Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7L12 3Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></symbol>
+</svg>
+
+<!-- Puerta de entrada -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gate__bg" aria-hidden="true"></div>
+  <div class="gate__inner">
+    <div class="monogram"><img src="https://grandcafelatino.com/assets/img/2024/09/Grand-cafe-latino-cafe-latino-en-lloret-banner-3-480x480.jpg" alt="Monograma de Latino Lounge & Terrace"></div>
+    <h1 id="gate-title"><span class="grand">Grand Café</span><span class="neon">Latino</span></h1>
+    <p class="gate__addr">Rambla de Romà Barnés, 10 · Lloret de Mar</p>
+    <p class="chip" data-status><span class="dot"></span><span data-status-text>…</span></p>
+    <button class="btn btn--brass" id="gate-enter" data-i18n="enter">Entrar</button>
+    <div class="lang" role="group" aria-label="Idioma" data-lang-switch></div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="wrap header__bar">
+    <a class="wordmark" href="#inicio" aria-label="Grand Café Latino, inicio"><b>Grand Café</b><span class="neon">Latino</span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#casa" data-i18n="nav_casa">La casa</a>
+      <a href="#noche" data-i18n="nav_noche">La noche</a>
+      <a href="#carta" data-i18n="nav_carta">La carta</a>
+      <a href="#horario" data-i18n="nav_horario">Horario</a>
+      <a href="#llegar" data-i18n="nav_llegar">Cómo llegar</a>
+    </nav>
+    <p class="chip" data-status><span class="dot"></span><span data-status-text>…</span></p>
+    <div class="lang" role="group" aria-label="Idioma" data-lang-switch></div>
+    <a class="btn btn--brass" href="#reservas" data-i18n="cta_reserve">Reservar</a>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer"><span></span></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="drawer__close" id="drawer-close" aria-label="Cerrar menú">×</button>
+  <nav aria-label="Menú">
+    <a href="#casa" data-i18n="nav_casa">La casa</a>
+    <a href="#noche" data-i18n="nav_noche">La noche</a>
+    <a href="#carta" data-i18n="nav_carta">La carta</a>
+    <a href="#reservas" data-i18n="nav_reservas">Planes y reservas</a>
+    <a href="#horario" data-i18n="nav_horario">Horario</a>
+    <a href="#llegar" data-i18n="nav_llegar">Cómo llegar</a>
+  </nav>
+  <div class="drawer__foot">
+    <p class="chip" data-status><span class="dot"></span><span data-status-text>…</span></p>
+    <div class="lang" role="group" aria-label="Idioma" data-lang-switch></div>
+  </div>
+</div>
+
+<main>
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <figure class="hero__media"><img src="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar.webp" alt="La barra del Grand Café Latino con su neón rosa" fetchpriority="high"></figure>
+    <div class="wrap hero__copy">
+      <p class="eyebrow" data-i18n="hero_eyebrow">Lounge & Terrace · Lloret de Mar</p>
+      <h2 class="hero__title" data-i18n="hero_title">Ritmo <em>latino</em> en el corazón de Lloret.</h2>
+      <p class="lede" data-i18n="hero_lede">Música latina, reguetón y los éxitos del momento. Cócteles elaborados al momento con ingredientes naturales. Todos los días de 20:00 a 3:00, muy cerca del mar.</p>
+      <div class="cta-row">
+        <a class="btn btn--brass" href="#reservas"><span data-i18n="hero_cta1">Reservar</span><svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost" href="#carta" data-i18n="hero_cta2">Ver la carta</a>
+      </div>
+    </div>
+    <ul class="wrap ribbon">
+      <li data-status><span class="dot"></span><span data-status-text>…</span></li>
+      <li><svg><use href="#i-clock"/></svg><span data-hours-text>…</span></li>
+      <li><svg><use href="#i-pin"/></svg><span>Rambla de Romà Barnés, 10</span></li>
+      <li><svg><use href="#i-wave"/></svg><span data-i18n="ribbon_beach">Muy cerca del mar</span></li>
+    </ul>
+  </section>
+
+  <!-- Recorrido -->
+  <nav class="journey" aria-label="Recorrido">
+    <div class="wrap">
+      <ol>
+        <li><a href="#casa"><span class="ring"><img src="https://grandcafelatino.com/assets/img/2025/07/discoteca-en-lloret-de-mar.webp" alt="" loading="lazy"></span><strong data-i18n="j1">La casa</strong><span data-i18n="j1s">Rambla de Romà Barnés</span></a></li>
+        <li><a href="#noche"><span class="ring"><img src="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-3-copia.webp" alt="" loading="lazy"></span><strong data-i18n="j2">La noche</strong><span data-i18n="j2s">Música latina y reguetón</span></a></li>
+        <li><a href="#carta"><span class="ring"><img src="https://grandcafelatino.com/assets/img/2024/10/mojito-de-fresa-en-lloret-de-mar-cocteleria-en-lloret--480x719.jpg" alt="" loading="lazy"></span><strong data-i18n="j3">La carta</strong><span data-i18n="j3s">Cócteles a 9,50 €</span></a></li>
+        <li><a href="#reservas"><span class="ring"><img src="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-2.webp" alt="" loading="lazy"></span><strong data-i18n="j4">Planes</strong><span data-i18n="j4s">Y reservas</span></a></li>
+        <li><a href="#llegar"><span class="ring"><img src="https://grandcafelatino.com/assets/img/2024/10/lloret-de-mar-grand-cafe-latino-ubicacion-maps.png" alt="" loading="lazy"></span><strong data-i18n="j5">Cómo llegar</strong><span data-hours-text>…</span></a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="celosia" aria-hidden="true"></div>
+
+  <!-- La casa -->
+  <section class="section section--lacquer" id="casa">
+    <div class="wrap">
+      <div class="casa">
+        <div class="arch casa__photo reveal"><img src="https://grandcafelatino.com/assets/img/2025/07/discoteca-en-lloret-de-mar.webp" alt="La fachada del Grand Café Latino de noche" loading="lazy"></div>
+        <div class="casa__text">
+          <p class="eyebrow" data-i18n="casa_eyebrow">La casa</p>
+          <h2 class="title" data-i18n="casa_title">Un paraíso <em>tropical</em> en el corazón de Lloret.</h2>
+          <p data-i18n="casa_p1">Grand Café Latino es el bar de cócteles creado por <strong>Gabriele Biondo</strong>, empresario y consultor gastronómico. Cinco años de historia y un ambiente acogedor y colorido.</p>
+          <p data-i18n="casa_p2">A partir de las 20:00, la terraza es el sitio para compartir risas, tapas y cócteles con amigos, en familia o para conocer a alguien especial. Cuando cae la noche, el ambiente sube hasta las 3:00.</p>
+          <div class="casa__inset">
+            <figure class="reveal"><div class="arch"><img src="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-2.webp" alt="Rincón con espejo dorado y neón" loading="lazy"></div><figcaption data-i18n="cap_arch">El rincón del espejo</figcaption></figure>
+            <figure class="reveal"><div class="rect"><img src="https://grandcafelatino.com/assets/img/2025/07/discoteca-en-lloret-de-mar-2.webp" alt="Salón con paredes verdes y mesas altas de madera" loading="lazy"></div><figcaption data-i18n="cap_salon">El salón</figcaption></figure>
+          </div>
+        </div>
+      </div>
+      <div class="spaces">
+        <article class="reveal"><svg class="ico"><use href="#i-sun"/></svg><h3 data-i18n="s1">La terraza</h3><p data-i18n="s1p">Muy cerca del mar, desde las 20:00: risas, tapas y cócteles.</p></article>
+        <article class="reveal"><svg class="ico"><use href="#i-glass"/></svg><h3 data-i18n="s2">La barra</h3><p data-i18n="s2p">Cada trago se elabora al momento, con ingredientes naturales.</p></article>
+        <article class="reveal"><svg class="ico"><use href="#i-floor"/></svg><h3 data-i18n="s3">La pista</h3><p data-i18n="s3p">Música latina, reguetón, electrónica y los mejores éxitos del momento.</p></article>
+        <article class="reveal"><svg class="ico"><use href="#i-star"/></svg><h3 data-i18n="s4">Eventos</h3><p data-i18n="s4p">Organizamos eventos especiales. Llámanos o escríbenos.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- La noche -->
+  <section class="section" id="noche">
+    <div class="wrap noche__intro">
+      <div class="section__head" style="margin:0">
+        <p class="eyebrow" data-i18n="noche_eyebrow">La noche</p>
+        <h2 class="title" data-i18n="noche_title">Lo que <em>suena</em>.</h2>
+      </div>
+      <p class="lede" data-i18n="noche_p">Cuando cae la noche, el ambiente sube: buena música, copas y la mejor vibra hasta las 3:00. Baila, brinda y disfruta.</p>
+    </div>
+    <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+    <div class="wrap">
+      <div class="gallery" tabindex="0" aria-label="Galería del local">
+        <figure><div class="frame"><img src="https://grandcafelatino.com/assets/img/2025/07/bar-musical-en-lloret-de-mar-3-copia.webp" alt="La barra iluminada en rosa" loading="lazy"></div><figcaption data-i18n="g1">La barra, de noche</figcaption></figure>
+        <figure><div class="frame"><img src="https://grandcafelatino.com/assets/img/2025/07/cocteleria-en-lloret-de-mar-4.webp" alt="Una copa sirviéndose junto a la celosía" loading="lazy"></div><figcaption data-i18n="g2">Junto a la celosía</figcaption></figure>
+        <figure><div class="frame"><img src="https://grandcafelatino.com/assets/img/2024/10/tequila-sunrise-en-lloret-de-mar-cocteleria-en-lloret--480x719.jpg" alt="Tequila Sunrise" loading="lazy"></div><figcaption>Tequila Sunrise</figcaption></figure>
+        <figure><div class="frame"><img src="https://grandcafelatino.com/assets/img/2025/07/cocteleria-en-lloret-de-mar-2.webp" alt="La barra de madera con luz cálida" loading="lazy"></div><figcaption data-i18n="g4">La barra</figcaption></figure>
+        <figure><div class="frame"><img src="https://grandcafelatino.com/assets/img/2025/07/cocteleria-en-lloret-de-mar.webp" alt="Mojito" loading="lazy"></div><figcaption>Mojito</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="celosia" aria-hidden="true"></div>
+
+  <!-- La carta -->
+  <section class="section section--lacquer" id="carta">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow" data-i18n="carta_eyebrow">La carta</p>
+        <h2 class="title" data-i18n="carta_title">Arma tu <em>ronda</em>.</h2>
+        <p class="lede" data-i18n="carta_p">Elige lo que vais a tomar y enseña la lista en la barra. Con la música alta, es más rápido que gritar el pedido.</p>
+      </div>
+      <div class="carta">
+        <div style="min-width:0">
+          <div class="tabs" role="tablist" aria-label="Secciones de la carta" id="tabs"></div>
+          <ul class="menu" id="menu" role="tabpanel"></ul>
+        </div>
+        <aside class="ronda" id="ronda" aria-labelledby="ronda-title">
+          <h3 id="ronda-title" data-i18n="ronda_title">Tu ronda</h3>
+          <ul class="ronda__list" id="ronda-list"></ul>
+          <p class="ronda__empty" id="ronda-empty" data-i18n="ronda_empty">Tu ronda está vacía. Toca + en cualquier producto.</p>
+          <div class="ronda__total"><span data-i18n="ronda_total">Total</span><strong id="ronda-total">0,00 €</strong></div>
+          <div class="ronda__actions">
+            <button class="btn btn--brass" id="ronda-show" disabled data-i18n="ronda_show">Enseñar en la barra</button>
+            <button class="link-btn" id="ronda-clear" data-i18n="ronda_clear">Vaciar</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Planes y reservas -->
+  <section class="section" id="reservas">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow" data-i18n="res_eyebrow">Planes y reservas</p>
+        <h2 class="title" data-i18n="plan_title">Elige tu <em>plan</em>.</h2>
+        <p class="lede" data-i18n="plan_p">Con amigos, en familia o para conocer a alguien especial. Y si quieres organizar un evento, también.</p>
+      </div>
+      <div class="planes" id="planes"></div>
+      <p class="planes-note"><svg><use href="#i-info"/></svg><span data-i18n="plan_note">Pedidos de ejemplo hechos con la carta y los precios de grandcafelatino.com.</span></p>
+    </div>
+    <div class="wrap reservas" id="reserva-form">
+      <div class="reservas__aside">
+        <div class="section__head" style="margin:0">
+          <h3 class="title title-sm" data-i18n="res_title">Reserva tu <em>noche</em>.</h3>
+          <p class="lede" data-i18n="res_p">Si quieres reservar o tienes cualquier consulta, escríbenos o llámanos.</p>
+        </div>
+        <dl class="contact-lines">
+          <div><dt data-i18n="tel">Teléfono</dt><dd>+34 605 26 42 18</dd></div>
+          <div><dt>Email</dt><dd>info@grandcafelatino.com</dd></div>
+        </dl>
+        <div class="arch"><img src="https://grandcafelatino.com/assets/img/2024/10/mojito-de-fresa-en-lloret-de-mar-cocteleria-en-lloret--480x719.jpg" alt="Mojito de fresa" loading="lazy"></div>
+      </div>
+      <form class="booking" id="booking" novalidate>
+        <fieldset class="field">
+          <legend data-i18n="f_type">¿Qué plan tenéis?</legend>
+          <div class="types">
+            <label><input type="radio" name="tipo" id="tipo-amigos" value="amigos" checked><span><svg><use href="#i-group"/></svg><b data-i18n="t_amigos">Con amigos</b></span></label>
+            <label><input type="radio" name="tipo" id="tipo-familia" value="familia"><span><svg><use href="#i-sun"/></svg><b data-i18n="t_familia">En familia</b></span></label>
+            <label><input type="radio" name="tipo" id="tipo-especial" value="especial"><span><svg><use href="#i-heart"/></svg><b data-i18n="t_especial">Alguien especial</b></span></label>
+            <label><input type="radio" name="tipo" id="tipo-evento" value="evento"><span><svg><use href="#i-star"/></svg><b data-i18n="t_evento">Evento especial</b></span></label>
+          </div>
+        </fieldset>
+        <div class="row">
+          <div class="field"><label for="fecha" data-i18n="f_date">Día</label><input class="input" type="date" id="fecha" required></div>
+          <div class="field"><label for="hora" data-i18n="f_time">Llegada aprox.</label><select class="input" id="hora"></select></div>
+          <div class="field"><span class="label" id="personas-label" data-i18n="f_people">Personas</span>
+            <div class="stepper-lg" role="group" aria-labelledby="personas-label"><button type="button" id="p-minus" aria-label="Menos">−</button><output id="personas">4</output><button type="button" id="p-plus" aria-label="Más">+</button></div>
+          </div>
+        </div>
+        <p class="hint" id="fecha-hint" aria-live="polite"></p>
+        <div class="field"><label for="nombre" data-i18n="f_name">Nombre</label><input class="input" type="text" id="nombre" autocomplete="name" required></div>
+        <div class="field"><label for="notas" data-i18n="f_notes">Mensaje (opcional)</label><textarea class="input" id="notas" data-i18n-ph="f_notes_ph" placeholder="Cuéntanos lo que necesites"></textarea></div>
+        <div class="field"><span class="label" data-i18n="f_preview">Mensaje que se enviará</span><p class="preview" id="preview"></p></div>
+        <div class="submit-row">
+          <button class="btn btn--brass" type="submit"><svg><use href="#i-mail"/></svg><span data-i18n="f_submit">Enviar por email</span></button>
+          <a class="btn btn--ghost" href="tel:+34605264218"><svg><use href="#i-phone"/></svg><span data-i18n="f_call">Llamar</span></a>
+        </div>
+        <p class="hint" id="form-error" aria-live="assertive"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Horario -->
+  <section class="section section--lacquer" id="horario">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow" data-i18n="hor_eyebrow">Horario</p>
+        <h2 class="title" data-i18n="hor_title">Cuándo <em>venir</em>.</h2>
+        <p class="lede" data-i18n="hor_p">Abrimos los siete días de la semana, de 20:00 a 3:00, también fuera de temporada.</p>
+      </div>
+      <div class="horario">
+        <div style="min-width:0">
+          <h3 class="subhead" data-i18n="tl_title">La noche, hora a hora</h3>
+          <div class="timeline">
+            <div class="tl-ticks" aria-hidden="true"><span style="left:0">20:00</span><span style="left:14.286%">21:00</span><span style="left:28.571%">22:00</span><span style="left:42.857%">23:00</span><span style="left:57.143%">0:00</span><span style="left:71.429%">1:00</span><span style="left:85.714%">2:00</span><span style="left:100%">3:00</span></div>
+            <div class="tl-bar" id="tl-bar">
+              <span class="tl-seg tl-seg--early" data-i18n="tl_early_t">Terraza y tapas</span>
+              <span class="tl-seg tl-seg--late" data-i18n="tl_late_t">La fiesta en serio</span>
+            </div>
+            <div class="tl-notes">
+              <article><b>20:00</b><p data-i18n="tl_early_p">Risas, tapas y cócteles en la terraza. Si vas temprano, puedes encontrar mesa fácilmente.</p></article>
+              <article><b>23:00</b><p data-i18n="tl_late_p">«Después de las 11 se pone lleno y la fiesta empieza en serio.»</p><cite data-i18n="tl_src">Neusdeal, opinión en Google</cite></article>
+            </div>
+          </div>
+          <ul class="days" id="days"></ul>
+        </div>
+        <div>
+          <h3 class="subhead" data-i18n="next_nights">Próximas noches</h3>
+          <ul class="nights" id="nights"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opiniones -->
+  <section class="section" id="opiniones">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow" data-i18n="op_eyebrow">Opiniones</p>
+        <h2 class="title" data-i18n="op_title">Lo que <em>dicen</em>.</h2>
+      </div>
+      <div class="quotes" id="quotes"></div>
+      <p class="source-note" data-i18n="q_note">Opiniones de Google publicadas en grandcafelatino.com.</p>
+    </div>
+  </section>
+
+  <div class="celosia" aria-hidden="true"></div>
+
+  <!-- Cómo llegar -->
+  <section class="section section--lacquer" id="llegar">
+    <div class="wrap llegar">
+      <div class="map reveal">
+        <img src="https://grandcafelatino.com/assets/img/2024/10/lloret-de-mar-grand-cafe-latino-ubicacion-maps.png" alt="Mapa del centro de Lloret de Mar con la ubicación del local" loading="lazy">
+        <span class="pin" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Grand Café Latino</span>
+      </div>
+      <div class="llegar__info">
+        <p class="eyebrow" data-i18n="ll_eyebrow">Cómo llegar</p>
+        <h2 class="title" data-i18n="ll_title">En el corazón de <em>Lloret</em>.</h2>
+        <p class="addr">Rambla de Romà Barnés, 10<br>17310 Lloret de Mar, Girona</p>
+        <p class="lede" data-i18n="ll_p">Cerca de las principales atracciones de la ciudad y muy cerca del mar.</p>
+        <div class="copy-row">
+          <a class="btn btn--brass" href="https://www.google.com/maps/search/?api=1&query=Grand%20Caf%C3%A9%20Latino%2C%20Rambla%20de%20Rom%C3%A0%20Barn%C3%A9s%2010%2C%20Lloret%20de%20Mar" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg><span data-i18n="ll_maps">Abrir en Google Maps</span></a>
+          <button class="copy-btn" type="button" data-copy="Rambla de Romà Barnés, 10, 17310 Lloret de Mar, Girona" data-i18n="copy_addr">Copiar dirección</button>
+        </div>
+        <dl class="contact-lines">
+          <div><dt data-i18n="tel">Teléfono</dt><dd>+34 605 26 42 18</dd><button class="copy-btn" type="button" data-copy="+34 605 26 42 18" data-i18n="copy">Copiar</button></div>
+          <div><dt>Email</dt><dd>info@grandcafelatino.com</dd><button class="copy-btn" type="button" data-copy="info@grandcafelatino.com" data-i18n="copy">Copiar</button></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__big"><b>Grand Café</b><span class="neon">Latino</span></div>
+    <div class="socials">
+      <a href="https://www.instagram.com/grandcafelatino/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg>@grandcafelatino</a>
+      <a href="https://www.tiktok.com/@grandcafelatino_" target="_blank" rel="noopener"><svg><use href="#i-tt"/></svg>@grandcafelatino_</a>
+      <a href="https://www.facebook.com/grandcafelatino/" target="_blank" rel="noopener"><svg><use href="#i-fb"/></svg>Facebook</a>
+    </div>
+    <div class="footer__legal">
+      <span>© 2026 Grand Café Latino · Rambla de Romà Barnés, 10 · Lloret de Mar</span>
+      <span data-i18n="legal">Bebe con moderación.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="ronda-bar" id="ronda-bar"><a href="#ronda"><span data-i18n="ronda_see">Ver mi ronda</span><span id="ronda-bar-sum"></span></a></div>
+
+<div class="barview" id="barview" role="dialog" aria-modal="true" aria-labelledby="barview-title" hidden>
+  <span class="neon" style="font-size:2.6rem">Latino</span>
+  <h3 id="barview-title" data-i18n="bar_title">Para la barra</h3>
+  <ul id="barview-list"></ul>
+  <p class="total" id="barview-total"></p>
+  <button class="btn btn--ghost" id="barview-close" data-i18n="close">Cerrar</button>
+</div>
+
+<script src="../assets/horario.js"></script>
+<script>
+(() => {
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return JSON.parse(sessionStorage.getItem(k)); } catch { return null; } },
+    set(k, v) { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch {} }
+  };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------- textos (fuente: grandcafelatino.com) ---------------- */
+  const I18N = {
+    es: {
+      enter: 'Entrar', nav_casa: 'La casa', nav_noche: 'La noche', nav_carta: 'La carta', nav_reservas: 'Planes y reservas', nav_horario: 'Horario', nav_llegar: 'Cómo llegar', cta_reserve: 'Reservar',
+      hero_eyebrow: 'Lounge & Terrace · Lloret de Mar',
+      hero_title: 'Ritmo <em>latino</em> en el corazón de Lloret.',
+      hero_lede: 'Música latina, reguetón y los éxitos del momento. Cócteles elaborados al momento con ingredientes naturales. Todos los días de 20:00 a 3:00, muy cerca del mar.',
+      hero_cta1: 'Reservar', hero_cta2: 'Ver la carta', ribbon_beach: 'Muy cerca del mar',
+      j1: 'La casa', j1s: 'Rambla de Romà Barnés', j2: 'La noche', j2s: 'Música latina y reguetón', j3: 'La carta', j3s: 'Cócteles a 9,50 €', j4: 'Planes', j4s: 'Y reservas', j5: 'Cómo llegar',
+      casa_eyebrow: 'La casa', casa_title: 'Un paraíso <em>tropical</em> en el corazón de Lloret.',
+      casa_p1: 'Grand Café Latino es el bar de cócteles creado por <strong>Gabriele Biondo</strong>, empresario y consultor gastronómico. Cinco años de historia y un ambiente acogedor y colorido.',
+      casa_p2: 'A partir de las 20:00, la terraza es el sitio para compartir risas, tapas y cócteles con amigos, en familia o para conocer a alguien especial. Cuando cae la noche, el ambiente sube hasta las 3:00.',
+      cap_arch: 'El rincón del espejo', cap_salon: 'El salón',
+      s1: 'La terraza', s1p: 'Muy cerca del mar, desde las 20:00: risas, tapas y cócteles.',
+      s2: 'La barra', s2p: 'Cada trago se elabora al momento, con ingredientes naturales.',
+      s3: 'La pista', s3p: 'Música latina, reguetón, electrónica y los mejores éxitos del momento.',
+      s4: 'Eventos', s4p: 'Organizamos eventos especiales. Llámanos o escríbenos.',
+      noche_eyebrow: 'La noche', noche_title: 'Lo que <em>suena</em>.',
+      noche_p: 'Cuando cae la noche, el ambiente sube: buena música, copas y la mejor vibra hasta las 3:00. Baila, brinda y disfruta.',
+      genres: ['Música latina', 'Reguetón', 'Electrónica', 'Éxitos del momento'],
+      g1: 'La barra, de noche', g2: 'Junto a la celosía', g4: 'La barra',
+      carta_eyebrow: 'La carta', carta_title: 'Arma tu <em>ronda</em>.',
+      carta_p: 'Elige lo que vais a tomar y enseña la lista en la barra. Con la música alta, es más rápido que gritar el pedido.',
+      tab_cocteles: 'Cócteles', tab_mojitos: 'Mojitos', tab_cervezas: 'Cervezas', tab_refrescos: 'Refrescos', tab_picar: 'Para picar',
+      star: 'Estrella', add: 'Añadir', remove: 'Quitar',
+      ronda_title: 'Tu ronda', ronda_empty: 'Tu ronda está vacía. Toca + en cualquier producto.', ronda_total: 'Total', ronda_show: 'Enseñar en la barra', ronda_clear: 'Vaciar', ronda_see: 'Ver mi ronda',
+      bar_title: 'Para la barra', close: 'Cerrar',
+      res_eyebrow: 'Planes y reservas', plan_title: 'Elige tu <em>plan</em>.',
+      plan_p: 'Con amigos, en familia o para conocer a alguien especial. Y si quieres organizar un evento, también.',
+      plan_example: 'Pedido de ejemplo', plan_total: 'Total', plan_add: 'Añadir a mi ronda', plan_added: 'Añadido a tu ronda', plan_book: 'Reservar con este plan', plan_event_cta: 'Consultar un evento',
+      plan_event_p: 'Cuéntanos la fecha y cuántos seréis, y lo organizamos contigo.',
+      plan_note: 'Pedidos de ejemplo hechos con la carta y los precios de grandcafelatino.com.',
+      res_title: 'Reserva tu <em>noche</em>.', res_p: 'Si quieres reservar o tienes cualquier consulta, escríbenos o llámanos.',
+      tel: 'Teléfono', f_type: '¿Qué plan tenéis?', t_amigos: 'Con amigos', t_familia: 'En familia', t_especial: 'Alguien especial', t_evento: 'Evento especial',
+      f_date: 'Día', f_time: 'Llegada aprox.', f_people: 'Personas', f_name: 'Nombre', f_notes: 'Mensaje (opcional)', f_notes_ph: 'Cuéntanos lo que necesites',
+      f_preview: 'Mensaje que se enviará', f_submit: 'Enviar por email', f_call: 'Llamar',
+      closed_night: (d) => `Ese día no abrimos. El próximo es el ${d}.`, pick: (d) => `Elegir ${d}`, open_night: (d, a, c) => `Abrimos el ${d}, de ${a} a ${c}.`,
+      err_name: 'Escribe tu nombre para que el equipo sepa a quién responder.', err_date: 'Elige un día en el que abramos.',
+      subject: (f) => `Reserva · ${f}`,
+      msg: (o) => `Hola, Grand Café Latino. ${o.tipo === 'evento' ? 'Quería consultar un evento especial' : 'Quería reservar'} para ${o.n} personas el ${o.fecha}, con llegada hacia las ${o.hora}. Plan: ${o.plan}. Nombre: ${o.nombre || '—'}.${o.notas ? `\n${o.notas}` : ''}`,
+      hor_eyebrow: 'Horario', hor_title: 'Cuándo <em>venir</em>.', hor_p: 'Abrimos los siete días de la semana, de 20:00 a 3:00, también fuera de temporada.',
+      tl_title: 'La noche, hora a hora', tl_early_t: 'Terraza y tapas', tl_late_t: 'La fiesta en serio', now: 'Ahora',
+      tl_early_p: 'Risas, tapas y cócteles en la terraza. Si vas temprano, puedes encontrar mesa fácilmente.',
+      tl_late_p: '«Después de las 11 se pone lleno y la fiesta empieza en serio.»', tl_src: 'Neusdeal, opinión en Google',
+      today: 'Hoy', next_nights: 'Próximas noches', reserve_short: 'Reservar', tonight: 'Esta noche',
+      op_eyebrow: 'Opiniones', op_title: 'Lo que <em>dicen</em>.', q_note: 'Opiniones de Google publicadas en grandcafelatino.com.', q_src: 'en Google',
+      ll_eyebrow: 'Cómo llegar', ll_title: 'En el corazón de <em>Lloret</em>.', ll_p: 'Cerca de las principales atracciones de la ciudad y muy cerca del mar.', ll_maps: 'Abrir en Google Maps',
+      copy_addr: 'Copiar dirección', copy: 'Copiar', copied: 'Copiado', legal: 'Bebe con moderación.'
+    },
+    en: {
+      enter: 'Enter', nav_casa: 'The house', nav_noche: 'The night', nav_carta: 'The menu', nav_reservas: 'Plans & bookings', nav_horario: 'Hours', nav_llegar: 'Getting here', cta_reserve: 'Book',
+      hero_eyebrow: 'Lounge & Terrace · Lloret de Mar',
+      hero_title: '<em>Latin</em> rhythm in the heart of Lloret.',
+      hero_lede: 'Latin music, reggaeton and today’s hits. Cocktails made to order with natural ingredients. Every day from 8 pm to 3 am, close to the sea.',
+      hero_cta1: 'Book', hero_cta2: 'See the menu', ribbon_beach: 'Close to the sea',
+      j1: 'The house', j1s: 'Rambla de Romà Barnés', j2: 'The night', j2s: 'Latin music & reggaeton', j3: 'The menu', j3s: 'Cocktails at €9.50', j4: 'Plans', j4s: 'And bookings', j5: 'Getting here',
+      casa_eyebrow: 'The house', casa_title: 'A <em>tropical</em> paradise in the heart of Lloret.',
+      casa_p1: 'Grand Café Latino is the cocktail bar created by <strong>Gabriele Biondo</strong>, entrepreneur and food consultant. Five years of history and a warm, colourful atmosphere.',
+      casa_p2: 'From 8 pm, the terrace is the place to share laughs, tapas and cocktails with friends, with family or to meet someone special. When night falls, the mood rises until 3 am.',
+      cap_arch: 'The mirror corner', cap_salon: 'The room',
+      s1: 'The terrace', s1p: 'Close to the sea, from 8 pm: laughs, tapas and cocktails.',
+      s2: 'The bar', s2p: 'Every drink is made to order, with natural ingredients.',
+      s3: 'The dance floor', s3p: 'Latin music, reggaeton, electronic and today’s best hits.',
+      s4: 'Events', s4p: 'We organise special events. Call or write to us.',
+      noche_eyebrow: 'The night', noche_title: 'What’s <em>playing</em>.',
+      noche_p: 'When night falls, the mood rises: good music, drinks and the best vibe until 3 am. Dance, toast and enjoy.',
+      genres: ['Latin music', 'Reggaeton', 'Electronic', 'Today’s hits'],
+      g1: 'The bar at night', g2: 'By the lattice screen', g4: 'The bar',
+      carta_eyebrow: 'The menu', carta_title: 'Build your <em>round</em>.',
+      carta_p: 'Pick what you’re having and show the list at the bar. With the music up, it beats shouting your order.',
+      tab_cocteles: 'Cocktails', tab_mojitos: 'Mojitos', tab_cervezas: 'Beers', tab_refrescos: 'Soft drinks', tab_picar: 'To share',
+      star: 'Star', add: 'Add', remove: 'Remove',
+      ronda_title: 'Your round', ronda_empty: 'Your round is empty. Tap + on any item.', ronda_total: 'Total', ronda_show: 'Show at the bar', ronda_clear: 'Clear', ronda_see: 'See my round',
+      bar_title: 'For the bar', close: 'Close',
+      res_eyebrow: 'Plans & bookings', plan_title: 'Choose your <em>plan</em>.',
+      plan_p: 'With friends, with family or to meet someone special. And if you want to organise an event, we do that too.',
+      plan_example: 'Sample order', plan_total: 'Total', plan_add: 'Add to my round', plan_added: 'Added to your round', plan_book: 'Book with this plan', plan_event_cta: 'Ask about an event',
+      plan_event_p: 'Tell us the date and how many of you there will be, and we’ll organise it with you.',
+      plan_note: 'Sample orders built from the menu and prices on grandcafelatino.com.',
+      res_title: 'Book your <em>night</em>.', res_p: 'To book or ask anything, write to us or give us a call.',
+      tel: 'Phone', f_type: 'What’s your plan?', t_amigos: 'With friends', t_familia: 'With family', t_especial: 'Someone special', t_evento: 'Special event',
+      f_date: 'Day', f_time: 'Arrival', f_people: 'Guests', f_name: 'Name', f_notes: 'Message (optional)', f_notes_ph: 'Tell us what you need',
+      f_preview: 'Message to be sent', f_submit: 'Send by email', f_call: 'Call',
+      closed_night: (d) => `We’re closed that day. The next opening is ${d}.`, pick: (d) => `Choose ${d}`, open_night: (d, a, c) => `Open ${d}, ${a}–${c}.`,
+      err_name: 'Add your name so the team knows who to reply to.', err_date: 'Choose a day when we’re open.',
+      subject: (f) => `Booking · ${f}`,
+      msg: (o) => `Hi Grand Café Latino. ${o.tipo === 'evento' ? 'I’d like to ask about a special event' : 'I’d like to book'} for ${o.n} people on ${o.fecha}, arriving around ${o.hora}. Plan: ${o.plan}. Name: ${o.nombre || '—'}.${o.notas ? `\n${o.notas}` : ''}`,
+      hor_eyebrow: 'Hours', hor_title: 'When to <em>come</em>.', hor_p: 'We open seven days a week, from 8 pm to 3 am, off season too.',
+      tl_title: 'The night, hour by hour', tl_early_t: 'Terrace & tapas', tl_late_t: 'The real party', now: 'Now',
+      tl_early_p: 'Laughs, tapas and cocktails on the terrace. Come early and finding a table is easy.',
+      tl_late_p: '“After 11 it fills up and the party really starts.”', tl_src: 'Neusdeal, Google review',
+      today: 'Today', next_nights: 'Next nights', reserve_short: 'Book', tonight: 'Tonight',
+      op_eyebrow: 'Reviews', op_title: 'What people <em>say</em>.', q_note: 'Google reviews published on grandcafelatino.com, translated.', q_src: 'on Google',
+      ll_eyebrow: 'Getting here', ll_title: 'In the heart of <em>Lloret</em>.', ll_p: 'Near the town’s main sights and close to the sea.', ll_maps: 'Open in Google Maps',
+      copy_addr: 'Copy address', copy: 'Copy', copied: 'Copied', legal: 'Please drink responsibly.'
+    },
+    fr: {
+      enter: 'Entrer', nav_casa: 'La maison', nav_noche: 'La nuit', nav_carta: 'La carte', nav_reservas: 'Formules et réservations', nav_horario: 'Horaires', nav_llegar: 'Accès', cta_reserve: 'Réserver',
+      hero_eyebrow: 'Lounge & Terrace · Lloret de Mar',
+      hero_title: 'Le rythme <em>latino</em> au cœur de Lloret.',
+      hero_lede: 'Musique latine, reggaeton et tubes du moment. Des cocktails préparés minute avec des ingrédients naturels. Tous les jours de 20 h à 3 h, tout près de la mer.',
+      hero_cta1: 'Réserver', hero_cta2: 'Voir la carte', ribbon_beach: 'Tout près de la mer',
+      j1: 'La maison', j1s: 'Rambla de Romà Barnés', j2: 'La nuit', j2s: 'Musique latine et reggaeton', j3: 'La carte', j3s: 'Cocktails à 9,50 €', j4: 'Formules', j4s: 'Et réservations', j5: 'Accès',
+      casa_eyebrow: 'La maison', casa_title: 'Un paradis <em>tropical</em> au cœur de Lloret.',
+      casa_p1: 'Le Grand Café Latino est le bar à cocktails créé par <strong>Gabriele Biondo</strong>, entrepreneur et consultant en restauration. Cinq ans d’histoire et une ambiance chaleureuse et colorée.',
+      casa_p2: 'Dès 20 h, la terrasse est l’endroit idéal pour partager rires, tapas et cocktails entre amis, en famille ou pour rencontrer quelqu’un de spécial. À la nuit tombée, l’ambiance monte jusqu’à 3 h.',
+      cap_arch: 'Le coin du miroir', cap_salon: 'Le salon',
+      s1: 'La terrasse', s1p: 'Tout près de la mer, dès 20 h : rires, tapas et cocktails.',
+      s2: 'Le bar', s2p: 'Chaque verre est préparé minute, avec des ingrédients naturels.',
+      s3: 'La piste', s3p: 'Musique latine, reggaeton, électro et les meilleurs tubes du moment.',
+      s4: 'Événements', s4p: 'Nous organisons des événements spéciaux. Appelez-nous ou écrivez-nous.',
+      noche_eyebrow: 'La nuit', noche_title: 'Ce qu’on <em>écoute</em>.',
+      noche_p: 'À la nuit tombée, l’ambiance monte : bonne musique, verres et la meilleure vibe jusqu’à 3 h. Dansez, trinquez, profitez.',
+      genres: ['Musique latine', 'Reggaeton', 'Électro', 'Tubes du moment'],
+      g1: 'Le bar, la nuit', g2: 'Près du claustra', g4: 'Le bar',
+      carta_eyebrow: 'La carte', carta_title: 'Composez votre <em>tournée</em>.',
+      carta_p: 'Choisissez ce que vous prenez et montrez la liste au bar. Avec la musique forte, c’est plus rapide que de crier la commande.',
+      tab_cocteles: 'Cocktails', tab_mojitos: 'Mojitos', tab_cervezas: 'Bières', tab_refrescos: 'Softs', tab_picar: 'À partager',
+      star: 'Vedette', add: 'Ajouter', remove: 'Retirer',
+      ronda_title: 'Votre tournée', ronda_empty: 'Votre tournée est vide. Touchez + sur un produit.', ronda_total: 'Total', ronda_show: 'Montrer au bar', ronda_clear: 'Vider', ronda_see: 'Voir ma tournée',
+      bar_title: 'Pour le bar', close: 'Fermer',
+      res_eyebrow: 'Formules et réservations', plan_title: 'Choisissez votre <em>formule</em>.',
+      plan_p: 'Entre amis, en famille ou pour rencontrer quelqu’un de spécial. Et pour organiser un événement, aussi.',
+      plan_example: 'Exemple de commande', plan_total: 'Total', plan_add: 'Ajouter à ma tournée', plan_added: 'Ajouté à votre tournée', plan_book: 'Réserver cette formule', plan_event_cta: 'Demander pour un événement',
+      plan_event_p: 'Indiquez-nous la date et le nombre de personnes, et nous l’organisons avec vous.',
+      plan_note: 'Exemples de commande réalisés avec la carte et les prix de grandcafelatino.com.',
+      res_title: 'Réservez votre <em>nuit</em>.', res_p: 'Pour réserver ou pour toute question, écrivez-nous ou appelez-nous.',
+      tel: 'Téléphone', f_type: 'Quelle formule ?', t_amigos: 'Entre amis', t_familia: 'En famille', t_especial: 'Quelqu’un de spécial', t_evento: 'Événement',
+      f_date: 'Jour', f_time: 'Arrivée', f_people: 'Personnes', f_name: 'Nom', f_notes: 'Message (facultatif)', f_notes_ph: 'Dites-nous ce dont vous avez besoin',
+      f_preview: 'Message envoyé', f_submit: 'Envoyer par e-mail', f_call: 'Appeler',
+      closed_night: (d) => `Fermé ce jour-là. Prochaine ouverture : ${d}.`, pick: (d) => `Choisir ${d}`, open_night: (d, a, c) => `Ouvert ${d}, de ${a} à ${c}.`,
+      err_name: 'Indiquez votre nom pour que l’équipe sache à qui répondre.', err_date: 'Choisissez un jour d’ouverture.',
+      subject: (f) => `Réservation · ${f}`,
+      msg: (o) => `Bonjour Grand Café Latino. ${o.tipo === 'evento' ? 'Je voudrais des informations pour un événement' : 'Je voudrais réserver'} pour ${o.n} personnes le ${o.fecha}, arrivée vers ${o.hora}. Formule : ${o.plan}. Nom : ${o.nombre || '—'}.${o.notas ? `\n${o.notas}` : ''}`,
+      hor_eyebrow: 'Horaires', hor_title: 'Quand <em>venir</em>.', hor_p: 'Ouvert sept jours sur sept, de 20 h à 3 h, même hors saison.',
+      tl_title: 'La nuit, heure par heure', tl_early_t: 'Terrasse et tapas', tl_late_t: 'La vraie fête', now: 'Maint.',
+      tl_early_p: 'Rires, tapas et cocktails en terrasse. En venant tôt, on trouve facilement une table.',
+      tl_late_p: '« Après 23 h, c’est plein et la fête commence pour de bon. »', tl_src: 'Neusdeal, avis Google',
+      today: 'Auj.', next_nights: 'Prochaines soirées', reserve_short: 'Réserver', tonight: 'Ce soir',
+      op_eyebrow: 'Avis', op_title: 'Ce qu’ils en <em>disent</em>.', q_note: 'Avis Google publiés sur grandcafelatino.com, traduits.', q_src: 'sur Google',
+      ll_eyebrow: 'Accès', ll_title: 'Au cœur de <em>Lloret</em>.', ll_p: 'Près des principales attractions de la ville et tout près de la mer.', ll_maps: 'Ouvrir dans Google Maps',
+      copy_addr: 'Copier l’adresse', copy: 'Copier', copied: 'Copié', legal: 'L’abus d’alcool est dangereux pour la santé.'
+    }
+  };
+  const LANGS = { es: 'ES', en: 'EN', fr: 'FR' };
+  let lang = store.get('gcl-lang') || (navigator.language || 'es').slice(0, 2);
+  if (!I18N[lang]) lang = 'es';
+  const t = (k) => I18N[lang][k] ?? I18N.es[k] ?? k;
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+  /* ---------------- carta (grandcafelatino.com/bar) ---------------- */
+  const tri = (es, en, fr) => ({ es, en, fr });
+  const mojito = (id, name, x, star) => ({ id, name, price: 9.5, star, d: tri(`Ron, ${x.es}, hierbabuena, azúcar y limón.`, `Rum, ${x.en}, spearmint, sugar and lemon.`, `Rhum, ${x.fr}, menthe verte, sucre et citron.`) });
+  const beerD = tri('6 cervezas.', '6 beers.', '6 bières.');
+  const unitD = tri('1 botellín.', '1 bottle.', '1 bouteille.');
+  const teqD = (fill) => tri(`5 rollitos fritos de masa de trigo, rellenos de ${fill.es}.`, `5 fried wheat-dough rolls filled with ${fill.en}.`, `5 rouleaux frits de pâte de blé, fourrés ${fill.fr}.`);
+  const empD = (fill) => tri(`4 empanadas fritas de harina de maíz, rellenas de ${fill.es}.`, `4 fried corn-flour empanadas filled with ${fill.en}.`, `4 empanadas frites à la farine de maïs, ${fill.fr}.`);
+  const CARTA = [
+    { id: 'cocteles', items: [
+      { id: 'frosty', name: 'Latino Frosty', price: 9.5, d: tri('Tequila, triple seco, zumo de limón, frutos rojos y azúcar.', 'Tequila, triple sec, lemon juice, red berries and sugar.', 'Tequila, triple sec, jus de citron, fruits rouges et sucre.') },
+      { id: 'caipirinha', name: 'Caipirinha', price: 9.5, d: tri('Licor de cachaza, azúcar, lima y limón.', 'Cachaça, sugar, lime and lemon.', 'Cachaça, sucre, citron vert et citron.') },
+      { id: 'sunrise', name: 'Tequila Sunrise', price: 9.5, d: tri('Tequila, zumo de naranja y granadina.', 'Tequila, orange juice and grenadine.', 'Tequila, jus d’orange et grenadine.') },
+      { id: 'pina', name: 'Piña colada', price: 9.5, star: true, d: tri('Ron blanco, zumo de piña, batido de coco y hielo picado.', 'White rum, pineapple juice, coconut milk and crushed ice.', 'Rhum blanc, jus d’ananas, lait de coco et glace pilée.') },
+      { id: 'daiquiri', name: 'Daiquiri', price: 9.5, d: tri('Ron blanco, fresas, zumo de limón y azúcar.', 'White rum, strawberries, lemon juice and sugar.', 'Rhum blanc, fraises, jus de citron et sucre.') },
+      { id: 'margarita', name: 'Margarita', price: 9.5, d: tri('Tequila, lima, zumo de limón y azúcar.', 'Tequila, lime, lemon juice and sugar.', 'Tequila, citron vert, jus de citron et sucre.') },
+      { id: 'sotb', name: 'Sex on the beach', price: 9.5, d: tri('Vodka, zumo de naranja y granadina.', 'Vodka, orange juice and grenadine.', 'Vodka, jus d’orange et grenadine.') },
+      { id: 'caipiroska', name: 'Caipiroska', price: 9.5, d: tri('Vodka, lima y limón.', 'Vodka, lime and lemon.', 'Vodka, citron vert et citron.') }
+    ] },
+    { id: 'mojitos', items: [
+      mojito('m-coco', tri('Mojito de coco', 'Coconut mojito', 'Mojito coco'), tri('coco', 'coconut', 'coco'), true),
+      mojito('m-fresa', tri('Mojito de fresa', 'Strawberry mojito', 'Mojito fraise'), tri('fresa', 'strawberry', 'fraise'), true),
+      mojito('m-frutos', tri('Mojito de frutos rojos', 'Red berry mojito', 'Mojito fruits rouges'), tri('frutos rojos', 'red berries', 'fruits rouges')),
+      mojito('m-pasion', tri('Mojito pasión', 'Passion fruit mojito', 'Mojito passion'), tri('fruta de la pasión', 'passion fruit', 'fruit de la passion')),
+      mojito('m-menta', tri('Mojito de menta', 'Mint mojito', 'Mojito menthe'), tri('menta', 'mint', 'menthe')),
+      mojito('m-mango', tri('Mojito de mango', 'Mango mojito', 'Mojito mangue'), tri('mango', 'mango', 'mangue')),
+      mojito('m-sandia', tri('Mojito de sandía', 'Watermelon mojito', 'Mojito pastèque'), tri('sandía', 'watermelon', 'pastèque'))
+    ] },
+    { id: 'cervezas', items: [
+      { id: 'cubo-magna', name: tri('Cubo Magna', 'Magna bucket', 'Seau Magna'), price: 15, d: beerD },
+      { id: 'cubo-sm', name: tri('Cubo San Miguel', 'San Miguel bucket', 'Seau San Miguel'), price: 15, d: beerD },
+      { id: 'cubo-desp', name: tri('Cubo Desperados', 'Desperados bucket', 'Seau Desperados'), price: 15, d: beerD },
+      { id: 'cubo-corona', name: tri('Cubo Corona', 'Corona bucket', 'Seau Corona'), price: 15, d: beerD },
+      { id: 'magna', name: 'Magna', price: 3, d: unitD },
+      { id: 'sm', name: 'San Miguel', price: 3, d: unitD },
+      { id: 'desp', name: 'Desperados', price: 3, d: unitD },
+      { id: 'corona', name: 'Corona', price: 3, d: unitD }
+    ] },
+    { id: 'refrescos', items: [
+      { id: 'agua', name: tri('Agua', 'Water', 'Eau'), price: 2 },
+      { id: 'schw-limon', name: tri('Schweppes Limón', 'Schweppes Lemon', 'Schweppes Citron'), price: 2 },
+      { id: 'schw-naranja', name: tri('Schweppes Naranja', 'Schweppes Orange', 'Schweppes Orange'), price: 2 },
+      { id: 'schw-tonica', name: tri('Schweppes Tónica', 'Schweppes Tonic', 'Schweppes Tonic'), price: 2 },
+      { id: 'pepsi', name: 'Pepsi', price: 2 },
+      { id: 'redbull', name: 'Red Bull', price: 2.5 },
+      { id: '7up', name: '7 Up', price: 2 }
+    ] },
+    { id: 'picar', items: [
+      { id: 'teq-queso', name: tri('Tequeños de queso', 'Cheese tequeños', 'Tequeños au fromage'), price: 6.5, d: teqD(tri('queso', 'cheese', 'au fromage')) },
+      { id: 'teq-cachapa', name: tri('Tequeños de cachapa', 'Cachapa tequeños', 'Tequeños cachapa'), price: 6.5, d: tri('5 rollitos fritos de masa de maíz, rellenos de queso.', '5 fried corn-dough rolls filled with cheese.', '5 rouleaux frits de pâte de maïs, fourrés au fromage.') },
+      { id: 'teq-nutella', name: tri('Tequeños de Nutella', 'Nutella tequeños', 'Tequeños au Nutella'), price: 6.5, d: teqD(tri('Nutella', 'Nutella', 'au Nutella')) },
+      { id: 'teq-guayaba', name: tri('Tequeños de guayaba y queso', 'Guava & cheese tequeños', 'Tequeños goyave et fromage'), price: 6.5, d: teqD(tri('guayaba y queso', 'guava and cheese', 'goyave et fromage')) },
+      { id: 'emp-queso', name: tri('Empanadas de queso', 'Cheese empanadas', 'Empanadas au fromage'), price: 7, d: empD(tri('queso', 'cheese', 'au fromage')) },
+      { id: 'emp-carne', name: tri('Empanadas de carne', 'Beef empanadas', 'Empanadas à la viande'), price: 7, d: empD(tri('carne', 'beef', 'à la viande')) },
+      { id: 'emp-pollo', name: tri('Empanadas de pollo', 'Chicken empanadas', 'Empanadas au poulet'), price: 7, d: empD(tri('pollo', 'chicken', 'au poulet')) },
+      { id: 'pollo', name: tri('Tiras de pollo', 'Chicken strips', 'Aiguillettes de poulet'), price: 5.9, d: tri('4 tiras de pollo con salsa moderna y cebollino.', '4 chicken strips with “moderna” sauce and chives.', '4 aiguillettes de poulet, sauce « moderna » et ciboulette.') },
+      { id: 'manchego', name: tri('Queso manchego', 'Manchego cheese', 'Fromage manchego'), price: 8, d: tri('Con pan con tomate.', 'With tomato bread.', 'Avec pain à la tomate.') },
+      { id: 'nachos', name: 'Nachos', price: 10, d: tri('Totopos de maíz, cheddar, guacamole, crema agria, carne picada, pico de gallo, jalapeños y cebollino.', 'Corn tortilla chips, cheddar, guacamole, sour cream, minced beef, pico de gallo, jalapeños and chives.', 'Chips de maïs, cheddar, guacamole, crème aigre, viande hachée, pico de gallo, jalapeños et ciboulette.') },
+      { id: 'bravas', name: tri('Patata brava Latino', 'Latino patatas bravas', 'Patatas bravas Latino'), price: 4.5, d: tri('Patatas bravas con salsa Latino y mayonesa.', 'Patatas bravas with Latino sauce and mayonnaise.', 'Patatas bravas, sauce Latino et mayonnaise.') }
+    ] }
+  ];
+  const ITEMS = Object.fromEntries(CARTA.flatMap((c) => c.items).map((i) => [i.id, i]));
+  const nameOf = (i) => (typeof i.name === 'string' ? i.name : i.name[lang]);
+  const money = (n) => new Intl.NumberFormat(lang, { style: 'currency', currency: 'EUR' }).format(n);
+  let tab = 'cocteles';
+  let ronda = store.get('gcl-ronda') || {};
+  Object.keys(ronda).forEach((id) => { if (!ITEMS[id]) delete ronda[id]; });
+
+  function renderTabs() {
+    $('#tabs').innerHTML = CARTA.map((c) => `<button role="tab" id="tab-${c.id}" aria-selected="${c.id === tab}" data-tab="${c.id}">${t('tab_' + c.id)}</button>`).join('');
+  }
+  function renderMenu() {
+    const cat = CARTA.find((c) => c.id === tab);
+    $('#menu').setAttribute('aria-labelledby', 'tab-' + tab);
+    $('#menu').innerHTML = cat.items.map((i) => {
+      const q = ronda[i.id] || 0;
+      return `<li><span class="name">${nameOf(i)}${i.star ? `<span class="badge">${t('star')}</span>` : ''}</span>${i.d ? `<span class="desc">${i.d[lang]}</span>` : ''}<span class="side"><span class="price">${money(i.price)}</span><button class="add" type="button" data-add="${i.id}" aria-label="${t('add')} ${nameOf(i)}">+${q ? `<span class="qty">${q}</span>` : ''}</button></span></li>`;
+    }).join('');
+  }
+  function rondaTotal() { return Object.entries(ronda).reduce((s, [id, q]) => s + ITEMS[id].price * q, 0); }
+  function renderRonda() {
+    const entries = Object.entries(ronda).filter(([, q]) => q > 0);
+    const count = entries.reduce((s, [, q]) => s + q, 0);
+    $('#ronda-list').innerHTML = entries.map(([id, q]) => `<li><span class="stepper"><button type="button" data-dec="${id}" aria-label="${t('remove')}">−</button><output>${q}</output><button type="button" data-inc="${id}" aria-label="${t('add')}">+</button></span><span>${nameOf(ITEMS[id])}</span><span class="sub">${money(ITEMS[id].price * q)}</span></li>`).join('');
+    $('#ronda-empty').hidden = entries.length > 0;
+    $('#ronda-total').textContent = money(rondaTotal());
+    $('#ronda-show').disabled = !entries.length;
+    $('#ronda-bar-sum').textContent = `${count} · ${money(rondaTotal())}`;
+    document.body.classList.toggle('has-ronda', entries.length > 0);
+    store.set('gcl-ronda', ronda);
+  }
+  function change(id, d) {
+    ronda[id] = Math.max(0, (ronda[id] || 0) + d);
+    if (!ronda[id]) delete ronda[id];
+    renderMenu(); renderRonda();
+  }
+  $('#tabs').addEventListener('click', (e) => { const b = e.target.closest('[data-tab]'); if (!b) return; tab = b.dataset.tab; renderTabs(); renderMenu(); });
+  $('#tabs').addEventListener('keydown', (e) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    const ids = CARTA.map((c) => c.id); const i = ids.indexOf(tab) + (e.key === 'ArrowRight' ? 1 : -1);
+    tab = ids[(i + ids.length) % ids.length]; renderTabs(); renderMenu(); $('#tab-' + tab).focus();
+  });
+  $('#menu').addEventListener('click', (e) => { const b = e.target.closest('[data-add]'); if (b) change(b.dataset.add, 1); });
+  $('#ronda-list').addEventListener('click', (e) => {
+    const inc = e.target.closest('[data-inc]'); const dec = e.target.closest('[data-dec]');
+    if (inc) change(inc.dataset.inc, 1); if (dec) change(dec.dataset.dec, -1);
+  });
+  $('#ronda-clear').addEventListener('click', () => { ronda = {}; renderMenu(); renderRonda(); });
+  $('#ronda-show').addEventListener('click', () => {
+    const entries = Object.entries(ronda).filter(([, q]) => q > 0);
+    $('#barview-list').innerHTML = entries.map(([id, q]) => `<li><b>${q}×</b>${nameOf(ITEMS[id])}</li>`).join('');
+    $('#barview-total').textContent = `${t('ronda_total')} · ${money(rondaTotal())}`;
+    $('#barview').hidden = false; $('#barview-close').focus();
+  });
+  $('#barview-close').addEventListener('click', () => { $('#barview').hidden = true; $('#ronda-show').focus(); });
+  new IntersectionObserver(([en]) => document.body.classList.toggle('ronda-visible', en.isIntersecting), { threshold: .15 }).observe($('#ronda'));
+
+  /* ---------------- horario ---------------- */
+  const AX0 = 20 * 60, AXW = 7 * 60;
+  const axisMin = (m) => (m < 12 * 60 ? m + 1440 : m);
+  function renderNow() {
+    const st = Horario.status();
+    const bar = $('#tl-bar'); let mark = bar.querySelector('.tl-now');
+    if (!st.open) { if (mark) mark.remove(); return; }
+    const f = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+    const m = axisMin(+f.find((p) => p.type === 'hour').value * 60 + +f.find((p) => p.type === 'minute').value);
+    if (!mark) { mark = document.createElement('span'); mark.className = 'tl-now'; bar.appendChild(mark); }
+    mark.style.left = `${Math.min(100, Math.max(0, ((m - AX0) / AXW) * 100))}%`;
+    mark.dataset.label = t('now');
+  }
+  function renderDays() {
+    const todayWd = Horario.weekdayIndexToday();
+    $('#days').innerHTML = Horario.week().map((d) => `<li class="${d.wd === todayWd ? 'today' : ''}"><b>${d.wd === todayWd ? t('today') : Horario.fmt.wdName(d.wd, lang, 'short').replace('.', '')}</b><span>${d.open ? d.abre : '—'}</span><span>${d.open ? d.cierra : ''}</span></li>`).join('');
+  }
+  function renderNights() {
+    const st = Horario.status();
+    $('#nights').innerHTML = Horario.nextNights(4).map((n, i) => {
+      const iso = n.date.toISOString().slice(0, 10);
+      const isNow = i === 0 && (st.open || st.inDays === 0);
+      return `<li><span class="date">${n.date.getUTCDate()}</span><span class="meta"><b>${isNow ? t('tonight') : cap(Horario.fmt.long(n.date, lang))}</b><span>${n.abre}–${n.cierra}</span></span><a href="#reserva-form" data-book="${iso}">${t('reserve_short')}</a></li>`;
+    }).join('');
+  }
+  $('#nights').addEventListener('click', (e) => { const a = e.target.closest('[data-book]'); if (a) { $('#fecha').value = a.dataset.book; onDate(); } });
+  function renderStatus() {
+    const st = Horario.status();
+    $$('[data-status]').forEach((el) => { el.classList.toggle('is-open', st.open); el.querySelector('[data-status-text]').textContent = Horario.statusText(st, lang); });
+    $$('[data-hours-text]').forEach((el) => (el.textContent = Horario.hoursText(lang)));
+    renderNow();
+  }
+
+  /* ---------------- opiniones (Google, mostradas en grandcafelatino.com/contacta) ---------------- */
+  const REVIEWS = [
+    { who: 'Isis', date: '2025-06-24', q: tri('Espectaculares los cócteles, tanto el tamaño normal como el tamaño XL. Tanto el servicio como el ambiente, un 10.', 'Spectacular cocktails, both the regular and the XL size. Service and atmosphere, a 10.', 'Des cocktails spectaculaires, en taille normale comme en XL. Service et ambiance : 10/10.') },
+    { who: 'Joseph Lovera', date: '2025-05-25', q: tri('Excelente la música, de lo más nuevo latino. Lo recomiendo 100 %.', 'Excellent music, the newest Latin sounds. I recommend it 100%.', 'Excellente musique, le meilleur de la nouveauté latino. Je recommande à 100 %.') },
+    { who: 'Neusdeal', date: '2025-02-09', q: tri('El sitio es pequeño, pero tiene mucha vibra. Después de las 11 se pone lleno y la fiesta empieza en serio.', 'The place is small, but it has a great vibe. After 11 it fills up and the party really starts.', 'L’endroit est petit, mais il a beaucoup de vibe. Après 23 h, c’est plein et la fête commence pour de bon.') },
+    { who: 'Ronald Cutipa Huallpa', date: '2025-02-06', q: tri('Pedí una margarita y me llegó con sal de colores en el borde. ¡Un detalle que marca la diferencia!', 'I ordered a margarita and it came with coloured salt on the rim. A detail that makes the difference!', 'J’ai commandé une margarita et elle est arrivée avec du sel coloré sur le bord. Un détail qui fait la différence !') }
+  ];
+  function renderReviews() {
+    $('#quotes').innerHTML = REVIEWS.map((r) => {
+      const [y, m, d] = r.date.split('-').map(Number);
+      const date = new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(y, m - 1, d)));
+      return `<blockquote class="reveal"><p>${r.q[lang]}</p><footer><b>${r.who}</b> · ${t('q_src')} · ${date}</footer></blockquote>`;
+    }).join('');
+  }
+
+  /* ---------------- reservas ---------------- */
+  const form = $('#booking');
+  const fecha = $('#fecha');
+  let personas = 4;
+  fecha.min = Horario.todayISO();
+  const firstNight = Horario.nextNights(1)[0];
+  fecha.value = firstNight ? firstNight.date.toISOString().slice(0, 10) : Horario.todayISO();
+
+  function fillHours() {
+    const prev = $('#hora').value;
+    const start = Horario.toMin(Horario.CONFIG.abre); const end = axisMin(Horario.toMin(Horario.CONFIG.cierra)) - 30;
+    const opts = [];
+    for (let m = start; m <= end; m += 30) { const h = Math.floor(m / 60) % 24; opts.push(`${h}:${String(m % 60).padStart(2, '0')}`); }
+    $('#hora').innerHTML = opts.map((o) => `<option${o === prev ? ' selected' : ''}>${o}</option>`).join('');
+    if (!opts.includes(prev)) $('#hora').selectedIndex = 2;
+  }
+  function onDate() {
+    const hint = $('#fecha-hint');
+    hint.classList.remove('warn'); hint.innerHTML = '';
+    const n = Horario.nightOnISO(fecha.value);
+    if (n) hint.textContent = I18N[lang].open_night(Horario.fmt.long(n.date, lang), n.abre, n.cierra);
+    else if (fecha.value) {
+      const nx = Horario.nextNightFromISO(fecha.value);
+      if (nx) { hint.classList.add('warn'); hint.innerHTML = `<span>${I18N[lang].closed_night(Horario.fmt.long(nx.date, lang))}</span><button type="button" data-iso="${nx.date.toISOString().slice(0, 10)}">${I18N[lang].pick(Horario.fmt.dayMonth(nx.date, lang))}</button>`; }
+    }
+    updatePreview();
+  }
+  $('#fecha-hint').addEventListener('click', (e) => { const b = e.target.closest('[data-iso]'); if (b) { fecha.value = b.dataset.iso; onDate(); } });
+  const tipoNow = () => form.querySelector('input[name="tipo"]:checked').value;
+  function dateLabel() {
+    const [y, m, d] = (fecha.value || Horario.todayISO()).split('-').map(Number);
+    return Horario.fmt.long(new Date(Date.UTC(y, m - 1, d, 12)), lang);
+  }
+  function message() {
+    const tipo = tipoNow();
+    return I18N[lang].msg({ tipo, plan: t('t_' + tipo), n: personas, fecha: dateLabel(), hora: $('#hora').value, nombre: $('#nombre').value.trim(), notas: $('#notas').value.trim() });
+  }
+  function updatePreview() { $('#preview').textContent = message(); }
+  fecha.addEventListener('change', onDate);
+  form.addEventListener('input', updatePreview);
+  form.addEventListener('change', updatePreview);
+  const setPeople = (n) => { personas = Math.min(60, Math.max(1, n)); $('#personas').textContent = personas; updatePreview(); };
+  $('#p-minus').addEventListener('click', () => setPeople(personas - 1));
+  $('#p-plus').addEventListener('click', () => setPeople(personas + 1));
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const err = $('#form-error'); err.textContent = ''; err.classList.add('warn');
+    if (!Horario.nightOnISO(fecha.value)) { err.textContent = t('err_date'); fecha.focus(); return; }
+    if (!$('#nombre').value.trim()) { err.textContent = t('err_name'); $('#nombre').focus(); return; }
+    location.href = `mailto:info@grandcafelatino.com?subject=${encodeURIComponent(I18N[lang].subject(dateLabel()))}&body=${encodeURIComponent(message())}`;
+  });
+
+  /* ---------------- planes: pedidos de ejemplo con la carta real ---------------- */
+  const PLANES = [
+    { id: 'amigos', people: 4, items: [['cubo-corona', 1], ['nachos', 1], ['teq-queso', 1]],
+      tag: tri('Para compartir', 'To share', 'À partager'),
+      quote: tri('«Tenemos las opciones ideales para compartir con amigos.»', '“We have just the thing to share with friends.”', '« Nous avons ce qu’il faut pour partager entre amis. »') },
+    { id: 'familia', people: 4, items: [['manchego', 1], ['emp-pollo', 1], ['bravas', 1], ['pepsi', 2]],
+      tag: tri('En la terraza, desde las 20:00', 'On the terrace, from 8 pm', 'En terrasse, dès 20 h'),
+      quote: tri('«Muy cerquita del mar, encontrarás nuestra terraza encantadora.»', '“Close to the sea, you’ll find our lovely terrace.”', '« Tout près de la mer, vous trouverez notre charmante terrasse. »') },
+    { id: 'especial', people: 2, items: [['m-fresa', 1], ['pina', 1], ['teq-nutella', 1]],
+      tag: tri('Cócteles estrella y algo dulce', 'Star cocktails and something sweet', 'Cocktails vedettes et une douceur'),
+      quote: tri('«…o para conocer a alguien especial.»', '“…or to meet someone special.”', '« …ou pour rencontrer quelqu’un de spécial. »') },
+    { id: 'evento', items: [],
+      tag: tri('Llámanos o escríbenos', 'Call or write to us', 'Appelez-nous ou écrivez-nous'),
+      quote: tri('«Estamos disponibles para cualquier consulta y, por supuesto, para organizar eventos especiales.»', '“We’re here for any question and, of course, to organise special events.”', '« Nous sommes là pour toute question et, bien sûr, pour organiser des événements spéciaux. »') }
+  ];
+  let pickedPlan = null, addedPlan = null;
+  function renderPlanes() {
+    $('#planes').innerHTML = PLANES.map((p) => {
+      const on = p.id === pickedPlan;
+      const total = p.items.reduce((s, [id, q]) => s + ITEMS[id].price * q, 0);
+      const body = p.items.length
+        ? `<div class="plan__order"><span class="label">${t('plan_example')}</span><ul>${p.items.map(([id, q]) => `<li><b>${q}×</b><span>${nameOf(ITEMS[id])}</span><span>${money(ITEMS[id].price * q)}</span></li>`).join('')}</ul><div class="plan__total"><span>${t('plan_total')}</span><strong>${money(total)}</strong></div></div>`
+        : `<p class="plan__event">${t('plan_event_p')}</p>`;
+      const actions = p.items.length
+        ? `<button class="btn btn--ghost" type="button" data-plan-add="${p.id}">${addedPlan === p.id ? t('plan_added') : t('plan_add')}</button><button class="btn btn--brass" type="button" data-pick="${p.id}" aria-pressed="${on}">${t('plan_book')}</button>`
+        : `<button class="btn btn--brass" type="button" data-pick="${p.id}" aria-pressed="${on}">${t('plan_event_cta')}</button>`;
+      return `<article class="plan${on ? ' is-picked' : ''}"><header><span class="plan__tag">${p.tag[lang]}</span><h3>${t('t_' + p.id)}</h3></header><p class="plan__quote">${p.quote[lang]}</p>${body}<div class="plan__actions">${actions}</div></article>`;
+    }).join('');
+  }
+  $('#planes').addEventListener('click', (e) => {
+    const add = e.target.closest('[data-plan-add]');
+    if (add) {
+      const plan = PLANES.find((p) => p.id === add.dataset.planAdd);
+      plan.items.forEach(([id, q]) => { ronda[id] = (ronda[id] || 0) + q; });
+      addedPlan = plan.id; renderMenu(); renderRonda(); renderPlanes();
+      return;
+    }
+    const b = e.target.closest('[data-pick]'); if (!b) return;
+    const plan = PLANES.find((p) => p.id === b.dataset.pick);
+    form.querySelector(`input[name="tipo"][value="${plan.id}"]`).checked = true;
+    pickedPlan = plan.id; if (plan.people) setPeople(plan.people);
+    renderPlanes(); updatePreview();
+    $('#reserva-form').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  });
+  form.addEventListener('change', (e) => { if (e.target.name === 'tipo') { pickedPlan = e.target.value; renderPlanes(); } });
+
+  /* ---------------- copiar ---------------- */
+  document.addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-copy]'); if (!b) return;
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = t('copied'); setTimeout(() => (b.textContent = t(b.dataset.i18n)), 1600); } catch {}
+  });
+
+  /* ---------------- idioma ---------------- */
+  function applyLang() {
+    document.documentElement.lang = lang;
+    $$('[data-i18n]').forEach((el) => { const v = I18N[lang][el.dataset.i18n]; if (typeof v === 'string') el.innerHTML = v; });
+    $$('[data-i18n-ph]').forEach((el) => (el.placeholder = t(el.dataset.i18nPh)));
+    $$('[data-lang-switch]').forEach((g) => { g.innerHTML = Object.entries(LANGS).map(([k, v]) => `<button type="button" data-lang="${k}" aria-pressed="${k === lang}" lang="${k}">${v}</button>`).join(''); });
+    const seq = I18N[lang].genres.map((x) => `<span>${x}</span><i>✦</i>`).join('');
+    $('#marquee').innerHTML = seq.repeat(4);
+    renderTabs(); renderMenu(); renderRonda(); renderPlanes(); renderDays(); renderNights(); renderReviews(); renderStatus(); fillHours(); onDate();
+  }
+  document.addEventListener('click', (e) => { const b = e.target.closest('[data-lang]'); if (!b) return; lang = b.dataset.lang; store.set('gcl-lang', lang); applyLang(); });
+
+  /* ---------------- puerta, cabecera, menú ---------------- */
+  const enter = () => { document.body.classList.add('entered'); store.set('gcl-entered', true); $('#gate').setAttribute('aria-hidden', 'true'); };
+  if (store.get('gcl-entered')) document.body.classList.add('entered'); else $('#gate-enter').focus();
+  $('#gate-enter').addEventListener('click', enter);
+  const header = $('#header');
+  const onScroll = () => header.classList.toggle('is-solid', scrollY > 40);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const drawer = $('#drawer');
+  const setDrawer = (open) => { drawer.classList.toggle('open', open); drawer.setAttribute('aria-hidden', !open); $('#burger').setAttribute('aria-expanded', open); document.body.style.overflow = open ? 'hidden' : ''; };
+  $('#burger').addEventListener('click', () => setDrawer(true));
+  $('#drawer-close').addEventListener('click', () => setDrawer(false));
+  drawer.addEventListener('click', (e) => { if (e.target.closest('a')) setDrawer(false); });
+  addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; setDrawer(false); if (!$('#barview').hidden) $('#barview-close').click(); });
+
+  applyLang();
+  setInterval(renderStatus, 60000);
+})();
+</script>
+</body>
+</html>
